@@ -1,0 +1,73 @@
+[10-Mar-2021 09:08:13 America/Boise] PHP Fatal error:  Out of memory (allocated 799014912) (tried to allocate 4096 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Package/Loader/ArrayLoader.php on line 241
+[10-Mar-2021 09:13:25 America/Boise] PHP Fatal error:  Out of memory (allocated 799014912) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Package/Package.php on line 593
+[10-Mar-2021 09:13:54 America/Boise] PHP Fatal error:  Out of memory (allocated 798507008) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Json/JsonFile.php on line 270
+[10-Mar-2021 09:14:26 America/Boise] PHP Fatal error:  Out of memory (allocated 798507008) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Json/JsonFile.php on line 270
+[10-Mar-2021 09:15:01 America/Boise] PHP Fatal error:  Out of memory (allocated 798507008) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Json/JsonFile.php on line 270
+[10-Mar-2021 09:16:06 America/Boise] PHP Fatal error:  Out of memory (allocated 798507008) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Json/JsonFile.php on line 270
+[10-Mar-2021 09:16:06 America/Boise] PHP Fatal error:  Out of memory (allocated 798507008) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Console/Application.php on line 80
+[10-Mar-2021 09:17:59 America/Boise] PHP Fatal error:  Out of memory (allocated 799014912) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Package/Loader/ArrayLoader.php on line 241
+[10-Mar-2021 09:27:41 America/Boise] PHP Fatal error:  Out of memory (allocated 772362240) (tried to allocate 25772600 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/Util/RemoteFilesystem.php on line 459
+[12-Aug-2023 14:46:22 UTC] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php:1411
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8192, 'Return type of ...', '/home2/amicirev...', 1411)
+#1 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(476): include('/home2/amicirev...')
+#2 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile('/home2/amicirev...')
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php(15): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect(Array)
+#5 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config('aliases')
+#6 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#8 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(152): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(136): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(110): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#11 /home2/amicirev/public_html/public/index.php(51): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#12 /home2/amicirev/public_html/index.php(20): require_once('/home2/amicirev...')
+#13 {main} in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php on line 11
+[12-Aug-2023 14:46:26 UTC] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php:1411
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8192, 'Return type of ...', '/home2/amicirev...', 1411)
+#1 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(476): include('/home2/amicirev...')
+#2 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile('/home2/amicirev...')
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php(15): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect(Array)
+#5 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config('aliases')
+#6 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#8 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(152): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(136): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(110): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#11 /home2/amicirev/public_html/public/index.php(51): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#12 /home2/amicirev/public_html/index.php(20): require_once('/home2/amicirev...')
+#13 {main} in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php on line 11
+[12-Aug-2023 14:46:28 UTC] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php:1411
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8192, 'Return type of ...', '/home2/amicirev...', 1411)
+#1 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(476): include('/home2/amicirev...')
+#2 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile('/home2/amicirev...')
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php(15): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect(Array)
+#5 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config('aliases')
+#6 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#8 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(152): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(136): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(110): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#11 /home2/amicirev/public_html/public/index.php(51): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#12 /home2/amicirev/public_html/index.php(20): require_once('/home2/amicirev...')
+#13 {main} in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php on line 11
+[12-Aug-2023 14:46:29 UTC] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php:1411
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8192, 'Return type of ...', '/home2/amicirev...', 1411)
+#1 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(476): include('/home2/amicirev...')
+#2 /home2/amicirev/public_html/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile('/home2/amicirev...')
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php(15): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect(Array)
+#5 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config('aliases')
+#6 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#8 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(152): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(136): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(110): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#11 /home2/amicirev/public_html/public/index.php(51): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#12 /home2/amicirev/public_html/index.php(20): require_once('/home2/amicirev...')
+#13 {main} in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php on line 11

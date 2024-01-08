@@ -1,0 +1,333 @@
+[07-Dec-2022 03:54:00 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:00 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:00 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:54:05 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:05 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:05 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:54:09 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:09 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:09 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:54:11 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:11 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:11 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:54:36 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:36 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:36 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:54:44 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:44 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:44 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:54:53 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:53 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:54:53 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:05 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:05 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:05 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:07 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:07 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:07 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:10 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:10 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:10 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:10 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:10 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:10 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:12 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:12 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:12 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:17 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:17 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:17 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:18 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:18 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:18 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:20 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:20 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:20 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:26 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:26 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:26 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:30 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:30 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:30 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:30 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:30 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:30 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:32 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:32 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:32 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:34 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:34 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:34 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:37 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:37 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:37 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:40 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:40 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:40 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:44 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:44 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:44 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:49 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:49 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:49 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:52 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:52 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:52 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:54 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:54 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:54 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:55:54 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:54 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:55:54 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:01 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:01 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:01 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:04 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:04 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:04 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:05 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:05 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:05 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:09 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:09 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:09 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:19 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:19 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:19 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:25 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:25 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:25 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:25 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:25 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:25 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:30 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:30 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:30 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:38 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:38 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:38 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
+[07-Dec-2022 03:56:40 America/Boise] PHP Warning:  include(/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php): failed to open stream: No such file or directory in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:40 America/Boise] PHP Warning:  include(): Failed opening '/home2/amicirev/public_html/vendor/composer/../../app/Http/Kernel.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/amicirev/public_html/vendor/composer/ClassLoader.php on line 476
+[07-Dec-2022 03:56:40 America/Boise] PHP Fatal error:  Uncaught ReflectionException: Class App\Http\Kernel does not exist in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:830
+Stack trace:
+#0 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(830): ReflectionClass->__construct('App\\Http\\Kernel')
+#1 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build('App\\Http\\Kernel')
+#2 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('App\\Http\\Kernel', Array, false)
+#3 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(283): Illuminate\Foundation\Application->resolve('App\\Http\\Kernel', Array, false)
+#4 /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illum in /home2/amicirev/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 832
