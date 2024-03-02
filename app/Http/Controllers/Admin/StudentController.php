@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SessionModel;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
+use Illuminate\Support\Arr;
 
 use function PHPUnit\Framework\isNull;
 
@@ -14,23 +16,32 @@ class StudentController extends Controller
 
     public function search(Request $request)
     {
-        
+
         $query = Student::query();
 
-        if (isset($request->students)) {
-            if (isset($request->manual_verify) && strlen($request->manual_verify)) {
-                $userids = [];
-                foreach ($request->students as $student) {
-                    if (isset($student['checked']) && $student['checked'] == "on")
-                        $userids[] = $student['user_id'];
-                }
-                if ($request->manual_verify == 1)
-                    $verified = 1;
-                else if ($request->manual_verify == 2)
-                    $verified = 0;
-                if (isset($verified) && $userids)
+        if (isset($request->students) && isset($request->manual_verify) && strlen($request->manual_verify)) {
+            $userids = [];
+
+            // Get all checked user ids
+            foreach ($request->students as $student) {
+                if (isset($student['checked']) && $student['checked'] == "on")
+                    $userids[] = $student['user_id'];
+            }
+
+            // Verify or Unverify user
+            if (in_array($request->manual_verify, ['1', '2'])) {
+                $verified = 0;
+                if ($request->manual_verify == 1) $verified = 1;
+
+                //Set change value of verified field
+                if (isset($verified) && $userids) {
                     User::whereIn('id', $userids)
                         ->update(['verified' => $verified]);
+                }
+            }
+            // End user session
+            if ($request->manual_verify == '3') {
+                SessionModel::whereIn('user_id', $userids)->delete();
             }
         }
 

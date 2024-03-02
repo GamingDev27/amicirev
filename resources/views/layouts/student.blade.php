@@ -30,7 +30,7 @@
         <script src="{{ asset('js/vendor/jquery.blockUI.js') }}" ></script>
         <script src="{{ asset('js/vendor/player/dist/player.js') }}" ></script>
         <script src="{{ asset('js/common.js') }}" ></script>
-        
+        <script src="{{ asset('js/polling.js') }}" defer></script>
         
         
     
@@ -125,4 +125,5 @@
         </div>
         
     </body>
+
 </html>

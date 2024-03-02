@@ -100,3 +100,7 @@ Route::get('/logout', function () {
 	Auth::logout();
 	return redirect('login');
 });
+
+Route::get('/verify-session', function(){
+    return response()->json(['result' => 1]);
+});
