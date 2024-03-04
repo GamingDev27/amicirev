@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\SessionModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 //use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,7 @@ Route::post('/save_message', [App\Http\Controllers\Admin\Cms\MessageController::
 Route::get('/address/get_cities/{id}', [App\Http\Controllers\AddressController::class, 'get_cities'])->name('address_get_cities');
 Route::get('/address/get_barangays/{id}', [App\Http\Controllers\AddressController::class, 'get_barangays'])->name('address_get_barangays');
 
-Route::prefix('admin')->middleware(['auth','role:admin'])->group(function(){
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 	Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin_dashboard');
 	Route::get('/messages', [App\Http\Controllers\Admin\Cms\MessageController::class, 'index'])->name('admin_messages');
@@ -68,7 +70,7 @@ Route::prefix('admin')->middleware(['auth','role:admin'])->group(function(){
 	Route::get('/coach/add', [App\Http\Controllers\Admin\CoachController::class, 'add'])->name('admin_coach_add');
 	Route::get('/coach/edit/{id}', [App\Http\Controllers\Admin\CoachController::class, 'edit'])->name('admin_coach_edit');
 	Route::post('/coach/save', [App\Http\Controllers\Admin\CoachController::class, 'save'])->name('admin_coach_save');
-	Route::post('/attachment/save_chunk',[App\Http\Controllers\Admin\AttachmentController::class, 'saveChunk'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+	Route::post('/attachment/save_chunk', [App\Http\Controllers\Admin\AttachmentController::class, 'saveChunk'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 	Route::any('/attachment/streamAttachment/{id}', [App\Http\Controllers\Admin\AttachmentController::class, 'streamAttachment'])->name('admin_stream_mov');
 	Route::post('/attachment/remove', [App\Http\Controllers\Admin\AttachmentController::class, 'remove'])->name('admin_attachm_remove');
 	Route::post('/batch/save_class', [App\Http\Controllers\Admin\BatchController::class, 'save_class'])->name('admin_batch_save_class');
@@ -78,9 +80,8 @@ Route::prefix('admin')->middleware(['auth','role:admin'])->group(function(){
 	Route::get('/users/add', [App\Http\Controllers\Admin\UserController::class, 'add'])->name('admin_user_add');
 	Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin_user_edit');
 	Route::post('/users/save', [App\Http\Controllers\Admin\UserController::class, 'save'])->name('admin_user_save');
-	
 });
-Route::prefix('student')->middleware(['auth','role:student','verified'])->group(function(){
+Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');
 	Route::get('/profile/edit', [App\Http\Controllers\Student\ProfileController::class, 'edit'])->name('student_profile_edit');
 	Route::get('/profile/changep', [App\Http\Controllers\Student\ProfileController::class, 'changep'])->name('student_profile_changep');
@@ -92,15 +93,15 @@ Route::prefix('student')->middleware(['auth','role:student','verified'])->group(
 	Route::get('/portal/showv3/{batchid}/{courseid?}/{subjectid?}', [App\Http\Controllers\Student\PortalController::class, 'showv3'])->name('student_portal_showv3');
 	Route::post('/portal/join', [App\Http\Controllers\Student\PortalController::class, 'join'])->name('student_portal_join');
 	Route::any('/attachment/stream/{code}', [App\Http\Controllers\Admin\AttachmentController::class, 'stream'])->name('student_stream_mov');
-	
 });
 
 Route::get('/logout', function () {
-    Session::flush();
+	Session::flush();
 	Auth::logout();
 	return redirect('login');
 });
 
-Route::get('/verify-session', function(){
-    return response()->json(['result' => 1]);
+Route::get('/verify-session', function () {
+	$validSession = !is_null(SessionModel::where('user_id', auth()->user()->id)->first());
+	return response()->json(['isValidSession' => Auth::check()]);
 });
