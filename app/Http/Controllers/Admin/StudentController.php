@@ -38,13 +38,16 @@ class StudentController extends Controller
                     User::whereIn('id', $userids)
                         ->update(['verified' => $verified]);
                 }
+
+                //if manual_verify = 2, remove session
+                if($request->manual_verify == 2){
+                    User::whereIn('id', $userids)
+                     ->update(['remember_token' => null]);
+                    SessionModel::whereIn('user_id', $userids)->delete();
+                }
+                
             }
-            // End user session
-            if ($request->manual_verify == '3') {
-                User::whereIn('id', $userids)
-                        ->update(['remember_token' => null]);
-                SessionModel::whereIn('user_id', $userids)->delete();
-            }
+            
         }
 
         $lastname = null;

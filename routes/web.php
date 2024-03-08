@@ -102,6 +102,6 @@ Route::get('/logout', function () {
 });
 
 Route::get('/verify-session', function () {
-	$validSession = !is_null(SessionModel::where('user_id', auth()->user()->id)->first());
+	//$validSession = !is_null(SessionModel::where('user_id', auth()->user()->id)->first());
 	return response()->json(['isValidSession' => Auth::check()]);
 });
