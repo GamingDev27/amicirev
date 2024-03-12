@@ -7,6 +7,8 @@
         <meta name="description" content="" />
         <meta name="author" content="Bryan Victoria" />
         
+        <meta name="facebook-domain-verification" content="poul8beeuw1dhknp5fblriu9qtqxhr" />
+        
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
