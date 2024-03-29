@@ -23,16 +23,18 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/student.css') }}" rel="stylesheet">
     <link href="{{ asset('css/b4vtabs.min.css') }}" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    
     <script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
     <script src="{{ asset('js/vendor/ckeditor5-build-classic/ckeditor.js') }}"></script>
+    <script src="{{ asset('js/vendor/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/vendor/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery.blockUI.js') }}"></script>
     <script src="{{ asset('js/vendor/player/dist/player.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 
 
 
@@ -111,16 +113,16 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid">
+                {{-- <div class="container-fluid"> --}}
                     @include('flash-message')
                     @yield('content')
-                </div>
+                    {{-- </div> --}}
             </main>
 
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                        <div class="text-muted">Copyright &copy; Your Website 2024</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;

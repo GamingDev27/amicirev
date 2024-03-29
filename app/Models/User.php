@@ -20,6 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'google2fa_secret'
     ];
 
     /**
@@ -41,7 +42,39 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function student(){
-		return $this->hasOne('App\Models\Student','auth_user_id');
-	}
+    public function student()
+    {
+        return $this->hasOne('App\Models\Student', 'auth_user_id');
+    }
+
+    /**
+     * Set the google's 2fa code.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function google2faSecret(): Attribute
+    {
+        return new Attribute(
+            function ($value) {
+                try {
+                    return decrypt($value);
+                } catch (DecryptException $e) {
+                    // Handle decryption exception
+                    return null;
+                }
+            },
+            function ($value) {
+                try {
+                    return encrypt($value);
+                } catch (EncryptException $e) {
+                    // Handle encryption exception
+                    return null;
+                }
+            }
+        );
+    }
+
+
+   
 }

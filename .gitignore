@@ -19,6 +19,7 @@ eula.1028.txt
 vendor.zip
 test.php
 /public/storage
+/public/images/*
 /storage/*.key
 /storage/*.zip
 /storage/*.log

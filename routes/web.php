@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Models\SessionModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +84,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 });
 Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');
+	Route::post('/generate-qr', [App\Http\Controllers\Student\ProfileController::class, 'generateQr']);
 	Route::get('/profile/edit', [App\Http\Controllers\Student\ProfileController::class, 'edit'])->name('student_profile_edit');
 	Route::get('/profile/changep', [App\Http\Controllers\Student\ProfileController::class, 'changep'])->name('student_profile_changep');
 	Route::post('/profile/save', [App\Http\Controllers\Student\ProfileController::class, 'save'])->name('student_profile_save');
@@ -93,6 +95,9 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->grou
 	Route::get('/portal/showv3/{batchid}/{courseid?}/{subjectid?}', [App\Http\Controllers\Student\PortalController::class, 'showv3'])->name('student_portal_showv3');
 	Route::post('/portal/join', [App\Http\Controllers\Student\PortalController::class, 'join'])->name('student_portal_join');
 	Route::any('/attachment/stream/{code}', [App\Http\Controllers\Admin\AttachmentController::class, 'stream'])->name('student_stream_mov');
+	Route::post('/2fa', function () {
+		return redirect(route('student_profile'));
+	})->name('2fa');
 });
 
 Route::get('/logout', function () {
@@ -105,3 +110,5 @@ Route::get('/verify-session', function () {
 	//$validSession = !is_null(SessionModel::where('user_id', auth()->user()->id)->first());
 	return response()->json(['isValidSession' => Auth::check()]);
 });
+
+Route::get('/complete-registration', [RegisterController::class, 'completeRegistration'])->name('complete.registration');
