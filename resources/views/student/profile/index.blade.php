@@ -111,13 +111,18 @@
 				to verify your account when logging in. Download the google authenticator in playstore for android and
 				app store for iOS devices.</small>
 
-			<div class="mt-4 mb-5" id="qrImage">
+			<div class="mt-4 " id="qrImage">
 				@isset($QR_Image)
 				{!! $QR_Image !!}
 				@endisset
 			</div>
 
-
+			@isset($QR_Image)
+			<div class="custom-control custom-switch mb-5">
+				<input type="checkbox" class="custom-control-input" id="customSwitch1">
+				<label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+			</div>
+			@endisset
 		</div>
 
 		<!--QR Confirm Modal-->
@@ -161,7 +166,7 @@
         			id: $("#user_id").val()
 				})
       			}).then(response => {
-					$('#qrImage').html("HELLO");
+					
 				}).catch(error => {
 					
 				});

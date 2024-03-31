@@ -82,7 +82,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin_user_edit');
 	Route::post('/users/save', [App\Http\Controllers\Admin\UserController::class, 'save'])->name('admin_user_save');
 });
-Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->group(function () {
+Route::prefix('student')->middleware(['auth', 'role:student', 'verified', '2faselect'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');
 	Route::post('/generate-qr', [App\Http\Controllers\Student\ProfileController::class, 'generateQr']);
 	Route::get('/profile/edit', [App\Http\Controllers\Student\ProfileController::class, 'edit'])->name('student_profile_edit');
@@ -95,10 +95,20 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->grou
 	Route::get('/portal/showv3/{batchid}/{courseid?}/{subjectid?}', [App\Http\Controllers\Student\PortalController::class, 'showv3'])->name('student_portal_showv3');
 	Route::post('/portal/join', [App\Http\Controllers\Student\PortalController::class, 'join'])->name('student_portal_join');
 	Route::any('/attachment/stream/{code}', [App\Http\Controllers\Admin\AttachmentController::class, 'stream'])->name('student_stream_mov');
-	Route::post('/2fa', function () {
-		return redirect(route('student_profile'));
-	})->name('2fa');
 });
+
+// 2FA related routes
+Route::middleware('auth')->group(function () {
+	// Email2FA 
+	Route::get('email-verify', [App\Http\Controllers\Email2FAController::class, 'index'])->name('email.verify.index');
+	Route::post('email-verify', [App\Http\Controllers\Email2FAController::class, 'store'])->name('email.verify.post');
+	Route::get('email-verify/reset', [App\Http\Controllers\Email2FAController::class, 'resend'])->name('email.verify.resend');
+	// Google2FA
+	Route::get('verify-authenticator', [App\Http\Controllers\Google2FAController::class, 'index'])->name('2fa.index');
+	Route::post('verify-authenticator', [App\Http\Controllers\Google2FAController::class, 'store'])->name('2fa');
+	Route::get('generate-qr', [App\Http\Controllers\Google2FAController::class, 'getQRCode'])->name('generate.qr.code');
+});
+
 
 Route::get('/logout', function () {
 	Session::flush();

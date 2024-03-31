@@ -16,6 +16,7 @@ use App\Models\School;
 use App\Models\Address;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -34,18 +35,17 @@ class ProfileController extends Controller
         /**
          * Google QR Code Generation
          */
-        if($user->google2fa_secret){
+        if ($user->google2fa_secret) {
             $google2fa = app('pragmarx.google2fa');
             $QR_Image = $google2fa->getQRCodeInline(
-                'Amici RC Web Application',
+                'AMICI',
                 $user->email,
                 $user->google2fa_secret
             );
         }
         /**************************/
-
         //return view('student.profile.index', compact('user'));
-        return view('student.profile.index',['user' => $user,'QR_Image' => $QR_Image, 'secret' => $user->google2fa_secret]);
+        return view('student.profile.index', ['user' => $user, 'QR_Image' => $QR_Image, 'secret' => $user->google2fa_secret]);
     }
 
     public function edit()
@@ -191,15 +191,5 @@ class ProfileController extends Controller
         // $user->save();
         /**************************/
         return Redirect::back();
-        // Process your data here
-        // $data = [
-        //     'name' => 'John Doe',
-        //     'email' => 'john@example.com',
-        // ];
-
-        // // Return a JSON response
-        // return response()->json($data);
-
-
     }
 }

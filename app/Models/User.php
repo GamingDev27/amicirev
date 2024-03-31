@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Mail\SendEmailVerification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Contracts\Encryption\EncryptException;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -64,6 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
                     return null;
                 }
             },
+
             function ($value) {
                 try {
                     return encrypt($value);
@@ -75,6 +80,30 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
+    /**
+     * Generate a random number for email verification
+     * and send the randomize number for mail queueing.
+     */
+    public function generateCode()
+    {
+        //create a random code for email verification
+        $code = rand(100000, 999999);
 
-   
+        UserCode::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            ['code' => $code]
+        );
+
+        try {
+            $mailDetails = [
+                'company' => 'Amici Review Center',
+                'first_name' => 'Justine',
+                'title' => 'Email Verification from Amici Review Center',
+                'code' => $code
+            ];
+            Mail::to(auth()->user()->email)->queue(new SendEmailVerification($mailDetails));
+        } catch (Exception $e) {
+            info("Error: " . $e->getMessage());
+        }
+    }
 }
