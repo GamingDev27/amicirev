@@ -97,7 +97,7 @@ class User extends Authenticatable implements MustVerifyEmail
         try {
             $mailDetails = [
                 'company' => 'Amici Review Center',
-                'first_name' => 'Justine',
+                'first_name' => auth()->user()->student->first_name,
                 'title' => 'Email Verification from Amici Review Center',
                 'code' => $code
             ];
