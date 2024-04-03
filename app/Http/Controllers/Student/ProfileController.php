@@ -35,8 +35,9 @@ class ProfileController extends Controller
         /**
          * Google QR Code Generation
          */
+        $google2fa = app('pragmarx.google2fa');
+        $QR_Image = null;
         if ($user->google2fa_secret) {
-            $google2fa = app('pragmarx.google2fa');
             $QR_Image = $google2fa->getQRCodeInline(
                 'AMICI',
                 $user->email,
@@ -186,10 +187,17 @@ class ProfileController extends Controller
         /**
          * Google QR Code Generation
          */
-        // $qr_secretKey = $google2fa->generateSecretKey();
-        // $user->google2fa_secret = $qr_secretKey;
-        // $user->save();
+        $newGoogleKey = ['google2fa_secret' => $google2fa->generateSecretKey()];
+        $user->google2fa_secret = $newGoogleKey['google2fa_secret'];
+        $user->save();
+
+        $QR_Image = $google2fa->getQRCodeInline(
+            'AMICI',
+            $user->email,
+            $user->google2fa_secret
+        );
         /**************************/
-        return Redirect::back();
+        return redirect()->action([ProfileController::class, 'index']);;
+        //return response()->json(['QR_Image' => $QR_Image, 'secret' => $newGoogleKey['google2fa_secret']]);
     }
 }

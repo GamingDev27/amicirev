@@ -117,12 +117,7 @@
 				@endisset
 			</div>
 
-			@isset($QR_Image)
-			<div class="custom-control custom-switch mb-5">
-				<input type="checkbox" class="custom-control-input" id="customSwitch1">
-				<label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
-			</div>
-			@endisset
+
 		</div>
 
 		<!--QR Confirm Modal-->
@@ -136,7 +131,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-success" id="generateQr">Generate QR
+						<button type="button" class="btn btn-success" id="generateQr" data-dismiss="modal">Generate QR
 							Image</button>
 
 					</div>
@@ -166,6 +161,7 @@
         			id: $("#user_id").val()
 				})
       			}).then(response => {
+					location.reload();
 					
 				}).catch(error => {
 					
