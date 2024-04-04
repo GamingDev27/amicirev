@@ -1,231 +1,296 @@
 @extends('layouts.admin')
 
 @section('content')
-	<h4 class="mt-2">
-		{{ $batch->name }}
-		<a class="btn btn-outline-primary m-0 p-0" href="{{ route('admin_batch_edit',$batch->id) }}"> <i class="fas fa-pencil-alt"></i> Edit</a>
-		<span class="float-right">{{ $batch->season->name }}</span>
-	</h4>
-	<div class="row m-0 p-0">
-		<div class="col-10 m-0 p-0">
-			<b>STUDENTS:</b> 
-			<em><b>{{$students['verified']}}</b> verified</em>,
-			<em><b>{{$students['notyet']}}</b> not yet verified</em>,
-			<em><b>{{$students['total']}}</b> total</em>. 
-			<br />
-			<b>PAYMENT:</b>
-			<em><b> Php {{ number_format($totalpayments->total,2) }}</b> collected </em>, 
-			<em><b> {{ $payments['paid'] }}</b> fully paid   </em>, 
-			<em><b> {{ $payments['partial'] }}</b> partial   </em>, 
-			<em><b> {{ $payments['others'] }}</b> not yet paid  </em>, 
-			<br />
-			<b>DATE:</b> <em>{{ date('F d,Y',strtotime($batch->date_start)) }} to {{ date('F d,Y',strtotime($batch->date_end)) }}</em>
-		</div>
-		<div class="col-2 m-0 p-0">
-			<a class="btn btn-primary float-right p-0 m-1" href="{{ route('admin_batch_student',$batch->id) }}" ><i class="fa fa-account"></i>MANAGE STUDENTS</a>
-			@if(isset($class->vimeo_albumid))
-				<div class="float-right" style="width:380px;">
-					<a class="btn btn-primary p-0 m-1" target="_blank" href="https://panel.bunny.net/stream/library/manage/79127?collectionId={{$class->vimeo_albumid}}" ><i class="fa fa-account"></i>MANAGE VIDEOS</a>
-					<a class="btn btn-outline-primary float-right p-0 m-1"" href="{{ route('admin_batch_videosv2',$class->id) }}"> <i class="fas fa-refresh"></i> UPDATE VIDEOS </a> 
-					<a class="btn btn-outline-primary float-right p-0 m-1"" href="{{ route('batch_sync_videos',$class->id) }}"> <i class="fas fa-refresh"></i> SYNC </a> 
-				</div>
-				<a class="btn p-0 m-1" href="{{ route('admin_batch_videos',$class->id) }}" title="Vimeo Videos (Temporary)" ><i class="fa fa-account"></i>DOWNLOAD</a>
-			@endif
-		</div>
+<div class="row mt-5 mb-2 mb-lg-3 ">
+	<div class="col-12 col-lg-6">
+		<h3 class="d-inline">{{ $batch->name }}</h3>
+		<a class="btn btn-outline-primary mb-1 p-0 " href="{{ route('admin_batch_edit',$batch->id) }}"> <i
+				class="fas fa-pencil-alt"></i> Edit</a>
+		<h5 class="col-12 text-muted mb-0 p-0">{{ $batch->season->name }}</h5>
+		<div class="col-12 text-muted p-0"><strong>Date: </strong>{{ date('F d,Y',strtotime($batch->date_start)) }} to
+			{{
+			date('F
+			d,Y',strtotime($batch->date_end)) }}</div>
 	</div>
-	<div class="blackred" width="100%">
-		<nav >
-			<div class="nav nav-tabs nav-fill" id="nav-tab" >
-				@foreach($courses as $cid => $course)
-					<a class="nav-item nav-link {{ ($cid == $courseid)?' show active':'' }}" href="{{ route('admin_batch_view',['batchid'=>$batchid,'courseid'=>$cid]) }}"  >
-						{{$course}}
-					</a>
-				@endforeach
-			</div>
-		</nav>
-		<div class="tab-content py-3 px-3 px-sm-0" >
-		
-			<div class="tab-pane fade show active" >
-				@if(isset($class) && $class)
-					<p class="m-0 p-0 text-center" style="border-bottom:solid 5px lightgray">{{$class->course->code}} - {{$class->course->name}}</p>
-					<div class="row">
-						<div class="col-3">
-							<div class="nav flex-column nav-pills p-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-								@foreach($subjects as $sid => $subject)
-									<a class="nav-link {{ ($sid == $subjectid)?' show active':'' }}" href="{{ route('admin_batch_view',['batchid'=>$batchid,'courseid'=>$courseid,'subjectid'=>$sid]) }}">
-										{{ $subject }}
-									</a>
-								@endforeach
-							</div>
-						</div>
-						<div class="col-9">
-							<div class="tab-content highlight h-100 p-1">
-								<div class="tab-pane fade show active" >
-									{{$class->subject->name}}
-									<hr />
-									<div class="row" >
-										<div class="col-5 " align="center">
-											@if($class->coach)
-												<img style="width:70%;" src="/images/{{ $class->coach->image}}">
-												<br />
-												<b>
-													{{ $class->coach->salutation }}	
-													{{ $class->coach->first_name }}	
-													{{ $class->coach->middle_name }}	
-													{{ $class->coach->last_name }}	
-												</b>
-												<br />
-												<em>{{ $class->coach->title }}</em>	
-												<br />
-												{!! $class->coach->accomplishments !!}
-											@endif
-										</div>	
-										<div class="col-7">
-											<form method="POST" id="contentForm" action="{{ route('admin_batch_save_class') }}" >
-												@csrf
-												<div class="row align-items-stretch mb-5">
-													<div class="col-md-12">
-														<div class="form-group mb-2 md-0">
-															<div class="form-group form-group-textarea mb-md-0">	
-																<select name="coach_id" name="coach_id" class="form-control" name="manual" >
-																	@foreach($coaches as $coach)
-																		<option value="{{$coach->id}}" {{ ($coach->id == $class->coach_id)?'selected':''}} >
-																			{{ $coach->salutation }}	
-																			{{ $coach->first_name }}	
-																			{{ $coach->middle_name }}	
-																			{{ $coach->last_name }}	
-																		</option>
-																	@endforeach
-																</select>
-																@error('date_end')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-														</div>
-														<div class="form-group-row row">
-															<div class="form-group col-6">
-																<input id="id" type="hidden" name="id" value="{{ $class->id }}" required >
-																<input placeholder="Start Date*" id="date_start" type="date" class="form-control @error('date_start') is-invalid @enderror" name="date_start" value="{{ ($class->date_start)?date('Y-m-d', strtotime($class->date_start)):'' }}" required  >
-																@error('date_start')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-															<div class="form-group col-6">
-																<input placeholder="End Date*" id="date_end" type="date" class="form-control @error('date_end') is-invalid @enderror" name="date_end" value="{{ ($class->date_end)?date('Y-m-d', strtotime($class->date_end)):'' }}" required >
-																@error('date_end')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-														</div>
-														<div class="form-group mb-md-0">
-															<div class="form-group form-group-textarea mb-md-0">
-																<textarea id="remarks" name="remarks"  >{{ $class->remarks }}</textarea>
-															</div>
-															@error('remarks')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-															@enderror
-														</div>
-														<hr />
-														<button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">SUBMIT</button>
+	<div class="col-12 col-lg-6">
+		<a class="btn btn-warning col-12 col-lg-3 offset-lg-9"
+			href="{{ route('admin_batch_student',$batch->id) }}"></i>MANAGE STUDENTS</a>
+	</div>
+</div>
+
+@include('admin.batches._cards-students')
+
+@include('admin.batches._cards-payments')
+
+<div class="row my-2 px-2 justify-content-between">
+	@if(isset($class->vimeo_albumid))
+	<div class="mb-1">
+		<a class="btn btn-warning mr-2" target="_blank"
+			href="https://panel.bunny.net/stream/library/manage/79127?collectionId={{$class->vimeo_albumid}}">
+			<i class="fa fa-account"></i>MANAGE VIDEOS</a>
+
+		<a class="btn btn-info"" 
+			href=" {{ route('admin_batch_videosv2',$class->id)}}">
+			<i class="fas fa-refresh"></i> UPDATE VIDEOS </a>
+	</div>
+
+
+	<div class="mb-1">
+		<a class="btn btn-secondary""
+			href=" {{ route('batch_sync_videos',$class->id) }}">
+			<i class="fas fa-refresh"></i> SYNC </a>
+		<a class="btn btn-outline-dark" href="{{ route('admin_batch_videos',$class->id) }}"
+			title="Vimeo Videos (Temporary)"><i class="fa fa-account"></i>DOWNLOAD</a>
+	</div>
+	@endif
+</div>
+{{--
+<div class="col-2 m-0 p-0">
+	<a class="btn btn-primary float-right p-0 m-1" href="{{ route('admin_batch_student',$batch->id) }}"><i
+			class="fa fa-account"></i>MANAGE STUDENTS</a>
+	@if(isset($class->vimeo_albumid))
+	<div class="float-right" style="width:380px;">
+		<a class="btn btn-primary p-0 m-1" target="_blank"
+			href="https://panel.bunny.net/stream/library/manage/79127?collectionId={{$class->vimeo_albumid}}"><i
+				class="fa fa-account"></i>MANAGE VIDEOS</a>
+		<a class="btn btn-outline-primary float-right p-0 m-1"" href=" {{ route('admin_batch_videosv2',$class->id)
+			}}"> <i class="fas fa-refresh"></i> UPDATE VIDEOS </a>
+		<a class="btn btn-outline-primary float-right p-0 m-1"" href=" {{ route('batch_sync_videos',$class->id) }}">
+			<i class="fas fa-refresh"></i> SYNC </a>
+	</div>
+	<a class="btn p-0 m-1" href="{{ route('admin_batch_videos',$class->id) }}" title="Vimeo Videos (Temporary)"><i
+			class="fa fa-account"></i>DOWNLOAD</a>
+	@endif
+</div>
+--}}
+
+
+
+
+<div class="blackred" width="100%">
+	<nav>
+		<div class="nav nav-tabs nav-fill" id="nav-tab">
+			@foreach($courses as $cid => $course)
+			<a class="nav-item nav-link {{ ($cid == $courseid)?' show active':'' }}"
+				href="{{ route('admin_batch_view',['batchid'=>$batchid,'courseid'=>$cid]) }}">
+				{{$course}}
+			</a>
+			@endforeach
+		</div>
+	</nav>
+	<div class="tab-content py-3 px-3 px-sm-0">
+
+		<div class="tab-pane fade show active">
+			@if(isset($class) && $class)
+			<p class="m-0 p-0 text-center" style="border-bottom:solid 5px lightgray">{{$class->course->code}} -
+				{{$class->course->name}}</p>
+			<div class="row">
+				<div class="col-3">
+					<div class="nav flex-column nav-pills p-1" id="v-pills-tab" role="tablist"
+						aria-orientation="vertical">
+						@foreach($subjects as $sid => $subject)
+						<a class="nav-link {{ ($sid == $subjectid)?' show active':'' }}"
+							href="{{ route('admin_batch_view',['batchid'=>$batchid,'courseid'=>$courseid,'subjectid'=>$sid]) }}">
+							{{ $subject }}
+						</a>
+						@endforeach
+					</div>
+				</div>
+				<div class="col-9">
+					<div class="tab-content highlight h-100 p-1">
+						<div class="tab-pane fade show active">
+							{{$class->subject->name}}
+							<hr />
+							<div class="row">
+								<div class="col-5 " align="center">
+									@if($class->coach)
+									<img style="width:70%;" src="/images/{{ $class->coach->image}}">
+									<br />
+									<b>
+										{{ $class->coach->salutation }}
+										{{ $class->coach->first_name }}
+										{{ $class->coach->middle_name }}
+										{{ $class->coach->last_name }}
+									</b>
+									<br />
+									<em>{{ $class->coach->title }}</em>
+									<br />
+									{!! $class->coach->accomplishments !!}
+									@endif
+								</div>
+								<div class="col-7">
+									<form method="POST" id="contentForm" action="{{ route('admin_batch_save_class') }}">
+										@csrf
+										<div class="row align-items-stretch mb-5">
+											<div class="col-md-12">
+												<div class="form-group mb-2 md-0">
+													<div class="form-group form-group-textarea mb-md-0">
+														<select name="coach_id" name="coach_id" class="form-control"
+															name="manual">
+															@foreach($coaches as $coach)
+															<option value="{{$coach->id}}" {{ ($coach->id ==
+																$class->coach_id)?'selected':''}} >
+																{{ $coach->salutation }}
+																{{ $coach->first_name }}
+																{{ $coach->middle_name }}
+																{{ $coach->last_name }}
+															</option>
+															@endforeach
+														</select>
+														@error('date_end')
+														<span class="invalid-feedback" role="alert">
+															<strong>{{ $message }}</strong>
+														</span>
+														@enderror
 													</div>
 												</div>
-											</form>
-										</div>
-									</div>
-									<div style="border:solid 2px white;border-radius:5px;">
-										<div class="row" >
-											<div class="col-12">
-												<p class="p-0 m-0" style="border-bottom:solid 3px lightgray;" >
-													<b><em> PDF ATTACHMENTS </em></b>
-												</p>
+												<div class="form-group-row row">
+													<div class="form-group col-6">
+														<input id="id" type="hidden" name="id" value="{{ $class->id }}"
+															required>
+														<input placeholder="Start Date*" id="date_start" type="date"
+															class="form-control @error('date_start') is-invalid @enderror"
+															name="date_start"
+															value="{{ ($class->date_start)?date('Y-m-d', strtotime($class->date_start)):'' }}"
+															required>
+														@error('date_start')
+														<span class="invalid-feedback" role="alert">
+															<strong>{{ $message }}</strong>
+														</span>
+														@enderror
+													</div>
+													<div class="form-group col-6">
+														<input placeholder="End Date*" id="date_end" type="date"
+															class="form-control @error('date_end') is-invalid @enderror"
+															name="date_end"
+															value="{{ ($class->date_end)?date('Y-m-d', strtotime($class->date_end)):'' }}"
+															required>
+														@error('date_end')
+														<span class="invalid-feedback" role="alert">
+															<strong>{{ $message }}</strong>
+														</span>
+														@enderror
+													</div>
+												</div>
+												<div class="form-group mb-md-0">
+													<div class="form-group form-group-textarea mb-md-0">
+														<textarea id="remarks"
+															name="remarks">{{ $class->remarks }}</textarea>
+													</div>
+													@error('remarks')
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ $message }}</strong>
+													</span>
+													@enderror
+												</div>
+												<hr />
+												<button class="btn btn-primary btn-xl text-uppercase"
+													id="sendMessageButton" type="submit">SUBMIT</button>
 											</div>
-											<div class="col-5">
-												<ul class="list-group list-group-flush">
-													@foreach($class->attachments as $attachment)
-														<li class="list-group-item" style="background: none;">
-															{{$attachment->name}}
-															<a class="btn btn-danger float-right p-0 py-1 m-0" onclick="event.preventDefault(); if(confirm('Are you sure? \n Removing attachment will also delete the file at serve.')){document.getElementById('remove-batch{{$attachment->id}}-form').submit();}">
-																<i class="fa fa-eraser"></i>
-																{{ __('remove') }}
-															</a>
-															<form id="remove-batch{{$attachment->id}}-form" action="{{ route('admin_attachm_remove') }}" method="POST" class="d-none">
-																@csrf
-																<input type="hidden" name="id" value="{{$attachment->id}}" />
-															</form>
-															<!--<button class="btn btn-primary float-right p-0 py-1 m-0" onclick="readPDF({{ $attachment->token }});" >
+										</div>
+									</form>
+								</div>
+							</div>
+							<div style="border:solid 2px white;border-radius:5px;">
+								<div class="row">
+									<div class="col-12">
+										<p class="p-0 m-0" style="border-bottom:solid 3px lightgray;">
+											<b><em> PDF ATTACHMENTS </em></b>
+										</p>
+									</div>
+									<div class="col-5">
+										<ul class="list-group list-group-flush">
+											@foreach($class->attachments as $attachment)
+											<li class="list-group-item" style="background: none;">
+												{{$attachment->name}}
+												<a class="btn btn-danger float-right p-0 py-1 m-0"
+													onclick="event.preventDefault(); if(confirm('Are you sure? \n Removing attachment will also delete the file at serve.')){document.getElementById('remove-batch{{$attachment->id}}-form').submit();}">
+													<i class="fa fa-eraser"></i>
+													{{ __('remove') }}
+												</a>
+												<form id="remove-batch{{$attachment->id}}-form"
+													action="{{ route('admin_attachm_remove') }}" method="POST"
+													class="d-none">
+													@csrf
+													<input type="hidden" name="id" value="{{$attachment->id}}" />
+												</form>
+												<!--<button class="btn btn-primary float-right p-0 py-1 m-0" onclick="readPDF({{ $attachment->token }});" >
 																<i class="fa fa-book-open"></i> read
 															</button>-->
-															<!--
+												<!--
 															@if($attachment->type == 1)
 																<button class="btn btn-primary float-right p-1 m-0" onclick="playAttachedMov({{ $attachment->id }});" ><i class="fa fa-play"></i> PLAY</button>
 															@elseif($attachment->type == 3)
 																<button class="btn btn-primary float-right p-1 m-0" onclick="readPDF({{ $attachment->filename }});" ><i class="fa fa-book-open"></i> READ</button>
 															@endif
 															-->
-														</li>
-													@endforeach
-												</ul>
-											</div>	
-											<div class="col-7">
-												<div class="w-100 text-right">
-													<div style="display:none;">
-														<input type="file"  id="uploadVideoFile" accept="video/*" />
-													</div>
-													<button type="button" id="openVideoButton" style="display:none;" class="btn btn-outline-primary float-right m-1 p-0 px-1">OPEN VIDEO FILE</button>
-												</div>
-												<div class="w-100 text-right">
-													<div style="display:none;">
-														<input type="file"  id="uploadPDFFile" accept="application/pdf" />
-													</div>
-													<button type="button" id="openPDFButton" class="btn btn-outline-primary float-right m-1 p-0 px-1">UPLOAD PDF FILE</button>
-												</div>
-												<div id="pdfWrapper">
-													<iframe id="pdfFrame" style="width: 100%;" frameborder="0" allowfullscreen ></iframe>
-												</div>
-												<div id="videoSourceWrapper">
-													<video id="videoPlayer" style="width: 100%;" controls>
-														<source id="videoSource"/>
-													</video>
-												</div>
-												<div class="w-100 row" style="display:none;" >
-													<input type="text" class=" col-9 form-control" placeholder="NAME*" id="uploadFileName" />
-													<button type="button" id="uploadVideoButton" class="btn btn-outline-success col-3 p-0">START UPLOAD</button>
-												</div>
-												
-												<div class="card" style="display:none;z-index:1101 !important;" id="uploadDetails">
-													<div class="card-header">
-														<b>UPLOADING FILE</b>
-													</div>
-													<div class="card-body">
-														<p class="w-100 p-0 m-0">This may take some time. Please do not interrupt the upload. </p>
-														<div id="uploadVideoProgressBar" style="height: 15px; width: 1%; background: #2781e9; margin-top: -5px;"></div> 
-													</div>
+											</li>
+											@endforeach
+										</ul>
+									</div>
+									<div class="col-7">
+										<div class="w-100 text-right">
+											<div style="display:none;">
+												<input type="file" id="uploadVideoFile" accept="video/*" />
+											</div>
+											<button type="button" id="openVideoButton" style="display:none;"
+												class="btn btn-outline-primary float-right m-1 p-0 px-1">OPEN VIDEO
+												FILE</button>
+										</div>
+										<div class="w-100 text-right">
+											<div style="display:none;">
+												<input type="file" id="uploadPDFFile" accept="application/pdf" />
+											</div>
+											<button type="button" id="openPDFButton"
+												class="btn btn-outline-primary float-right m-1 p-0 px-1">UPLOAD PDF
+												FILE</button>
+										</div>
+										<div id="pdfWrapper">
+											<iframe id="pdfFrame" style="width: 100%;" frameborder="0"
+												allowfullscreen></iframe>
+										</div>
+										<div id="videoSourceWrapper">
+											<video id="videoPlayer" style="width: 100%;" controls>
+												<source id="videoSource" />
+											</video>
+										</div>
+										<div class="w-100 row" style="display:none;">
+											<input type="text" class=" col-9 form-control" placeholder="NAME*"
+												id="uploadFileName" />
+											<button type="button" id="uploadVideoButton"
+												class="btn btn-outline-success col-3 p-0">START UPLOAD</button>
+										</div>
+
+										<div class="card" style="display:none;z-index:1101 !important;"
+											id="uploadDetails">
+											<div class="card-header">
+												<b>UPLOADING FILE</b>
+											</div>
+											<div class="card-body">
+												<p class="w-100 p-0 m-0">This may take some time. Please do not
+													interrupt the upload. </p>
+												<div id="uploadVideoProgressBar"
+													style="height: 15px; width: 1%; background: #2781e9; margin-top: -5px;">
 												</div>
 											</div>
 										</div>
-										
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
-				@endif
+				</div>
 			</div>
+			@endif
 		</div>
 	</div>
+</div>
 @endsection
 @once
-	@push('scripts')
-		<script>
-			var atype = 1;
+@push('scripts')
+<script>
+	var atype = 1;
 			$(document).ready(function(){
 				$("#videoSourceWrapper").hide();
 				$("#pdfWrapper").hide();
@@ -450,8 +515,8 @@
 			
 
 			
-		</script>
+</script>
 
-		
-	@endpush
+
+@endpush
 @endonce
