@@ -66,8 +66,17 @@ class ProfileController extends Controller
         $barangays = Barangay::where('enabled', 1)->where('city_id', $cityid)->pluck('name', 'id');
         $schools = School::where('enabled', 1)->pluck('name', 'id');
 
+        $google2fa = app('pragmarx.google2fa');
+        $QR_Image = null;
+        if ($user->google2fa_secret) {
+            $QR_Image = $google2fa->getQRCodeInline(
+                'AMICI',
+                $user->email,
+                $user->google2fa_secret
+            );
+        }
 
-        return view('student.profile.edit', compact('user', 'provinces', 'cities', 'barangays', 'schools'));
+        return view('student.profile.edit', compact('user', 'provinces', 'cities', 'barangays', 'schools','QR_Image'));
     }
 
     public function changep()
@@ -109,7 +118,8 @@ class ProfileController extends Controller
             return back()->with('error', 'New password was not saved! ' . $errormessage);
     }
     public function save(Request $request)
-    {
+    {   
+        
         $result = false;
         $errormessage = "";
         $validator = Validator::make($request->all(), [
@@ -137,7 +147,8 @@ class ProfileController extends Controller
                 $student->sex = $request->sex;
                 $student->year_graduated = $request->year_graduated;
                 $student->mobile = $request->mobile;
-
+                $student->user->use_google2fa = ($request->use_google2fa == "on" ? 1 : 0);
+                
                 if (isset($request->image)) {
                     //If image exist, delete the previous file:
                     if ($student->image) {
@@ -150,7 +161,7 @@ class ProfileController extends Controller
                     $request->image->move(public_path('images'), $imageName);
                     $student->image = $imageName;
                 }
-                if ($student->save()) {
+                if ($student->save() && $student->user->save()) {
                     $result = true;
 
                     if (isset($request->address_id) && strlen($request->address_id))
@@ -200,4 +211,6 @@ class ProfileController extends Controller
         return redirect()->action([ProfileController::class, 'index']);;
         //return response()->json(['QR_Image' => $QR_Image, 'secret' => $newGoogleKey['google2fa_secret']]);
     }
+
+    
 }

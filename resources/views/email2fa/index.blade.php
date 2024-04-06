@@ -43,7 +43,7 @@
                         <div class="row justify-content-center ">
                             <p class="text-weight-light text-center text-light">
                                 A verification code has been sent to <span class="text-bolder text-warning">{{
-                                    substr($email, 0, 3) . '******'
+                                    substr($email, 0, 4) . '******'
                                     . substr($email, -6) }}</span>. </p>
                             <!-- Icons -->
                             <div class="col-12 mb-4 text-center">

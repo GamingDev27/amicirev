@@ -250,6 +250,19 @@
 					@enderror
 				</div>
 
+				@isset($QR_Image)
+				<div class="h5 mt-5 pb-2 border-bottom border-dark text-light">Two-Factor Authentication</div>
+				<div class="mt-4 mb-1" id="qrImage">
+					{!! $QR_Image !!}
+				</div>
+				<div class="form-group row p-3">
+					<input type="checkbox" {{ $user->use_google2fa ? 'checked' : '' }} 
+					data-toggle="toggle" data-size="sm" class="float-left" 
+					name="use_google2fa">
+					<label for="house_lot"
+					class="col-form-label text-light col-10 col-lg-8 text-md-left py-0">Use Google QR Image as my primary login verification.</label>
+				</div>
+				@endisset
 				<hr class="bg-dark" />
 				<div class="col-12 col-lg-6">
 					<button class="btn btn-primary btn-xl text-uppercase btn-block" id="sendMessageButton"

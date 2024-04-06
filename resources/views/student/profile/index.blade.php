@@ -105,18 +105,31 @@
 			</div>
 
 			<div class="h5 mt-5 pb-2 border-bottom border-dark text-light">Two-Factor Authentication</div>
-			<button class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#qrConfirmModal">Generate QR
+			<div class="form-group">
+				<button class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#qrConfirmModal">Generate QR
 				Image</button>
-			<small id="mobileHelp" class="form-text text-light">Scan this QR code using google authenticator application
-				to verify your account when logging in. Download the google authenticator in playstore for android and
-				app store for iOS devices.</small>
+			</div>	
+			
+			@isset($QR_Image)	
+			<div class="form-group">
+				<small id="mobileHelp" class="form-text text-light">Scan this QR code using google authenticator application
+					to verify your account when logging in. Download the google authenticator in playstore for android and
+					app store for iOS devices. You may also your the secret key <strong>{{ $secret }}</strong> to link you authenticator code without using the QR scanner.
+				</small>
+				<div class="mt-4" id="qrImage">
+					{!! $QR_Image !!}
+				</div>
 
-			<div class="mt-4 " id="qrImage">
-				@isset($QR_Image)
-				{!! $QR_Image !!}
-				@endisset
+				<div class="form-group row p-3  mb-4">
+					<input type="checkbox" {{ $user->use_google2fa ? 'checked' : '' }} 
+					data-toggle="toggle" data-size="sm" class="float-left" 
+					name="use_google2fa_disabled" disabled>
+					<label for="house_lot"
+					class="col-form-label text-light col-10 col-lg-8 text-md-left py-0">Use Google QR Image as my primary login verification.</label>
+				</div>
 			</div>
-
+			@endisset
+			
 
 		</div>
 
@@ -126,7 +139,7 @@
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-body">
-						<p>Generating a new QR image will invalidate any previous QR links in your Google Authenticator
+						<p>Generating a new QR image will invalidate any previous QR links under AMICI in your Google Authenticator
 							app. Are you sure you want to continue?</p>
 					</div>
 					<div class="modal-footer">
