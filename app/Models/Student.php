@@ -26,4 +26,14 @@ class Student extends Model
       return $this->hasOne('App\Models\Address','student_id');
     }
     
+    public function scopeFilter($query, array $filters = null){
+      if (isset($filters['name'])) {
+        $query->where(function ($query) use ($filters) {
+            $query->whereRaw('UPPER(first_name) LIKE ?', '%' . strtoupper($filters['name']) . '%')
+                 ->orWhereRaw('UPPER(last_name) LIKE ?', '%' . strtoupper($filters['name']) . '%')
+                 ->orWhereRaw('UPPER(middle_name) LIKE ?', '%' . strtoupper($filters['name']) . '%')
+                 ->orWhereRaw('CONCAT(UPPER(first_name), " ", UPPER(last_name)) LIKE ?', '%'.strtoupper($filters['name']).'%');
+        });
+      }
+    }
 }

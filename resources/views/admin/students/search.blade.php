@@ -25,12 +25,12 @@
 								<div class="input-group col-12 col-md-6 col-lg-3 mb-1">
 									<input type="text" class="form-control" name="first_name" id="first_name"
 										placeholder="FirstName" value="{{
-										request('first_name') }}">
+										request('first_name') }}" autocomplete="first_name">
 								</div>
 								<div class="input-group col-12 col-md-6 col-lg-3 mb-1">
 									<input type="text" class="form-control" name="last_name" id="last_name"
 										placeholder="LastName" value="{{
-										request('last_name') }}">
+										request('last_name') }}" autocomplete="last_name">
 									{{-- <div class="input-group-append">
 										<button class="btn btn-outline-primary" type="submit" id="search-lastname"><i
 												class="fas fa-search"></i></button>
@@ -66,6 +66,7 @@
 										Clear</button>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 
@@ -95,6 +96,7 @@
 				<th scope="col" class="text-center text-nowrap">Registered</th>
 				<th scope="col" class="text-center text-nowrap">Email Verification</th>
 				<th scope="col" class="text-center text-nowrap">Manual Verification</th>
+				<th scope="col" class="text-center text-nowrap">Devices</th>
 			</tr>
 		</thead>
 
@@ -128,6 +130,11 @@
 						class="{{ $student->user->verified?'badge badge-pill badge-success':'badge badge-pill badge-secondary'}}">{{$student->user->verified?'VERIFIED':'NOT
 						YET'}}</span>
 				</td>
+				<td class="text-body text-center text-wrap">
+					<a href="#" class="badge badge-primary view-modal-btn" data-id="{{ $student->user->id }}" >VIEW DEVICES</a>
+					{{-- <a href="{{ route('view_user_devices', [$student->user->id]) }}" class="badge badge-primary view-modal-btn" data-toggle="modal" data-target="#viewDevicesModal">VIEW DEVICES</a> --}}
+					{{-- <a href="{{ route('view_user_devices', [$student->user->id]) }}" class="badge badge-primary view-modal-btn" >VIEW DEVICES</a> --}}
+				</td>
 
 			</tr>
 			@endforeach
@@ -152,6 +159,9 @@
 <div class="d-flex justify-content-center">
 	{{ $students->links() }}
 </div>
+
+@include('admin.students._view-devices')
+
 @endsection
 
 @once
@@ -170,8 +180,22 @@
 		$(".form-select-clear option:selected").removeAttr('selected');
 		$("#filterBtn").click();
 	});
-
-
+	
+	$(".view-modal-btn").click(function() {
+		const id = $(this).data('id');
+		$.ajax({
+            url: '/admin/students/search/devices/user/' + id,
+			type: 'GET',
+			headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        	},
+            success: function(data) {
+				$('#modal-user-id').val(id);
+				$('#modalTableRow').html(data);
+				$('#viewDevicesModal').modal('show');
+			},
+		});
+	});
 </script>
 @endpush
 @endonce

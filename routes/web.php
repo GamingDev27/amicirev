@@ -35,6 +35,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin_dashboard');
 	Route::get('/messages', [App\Http\Controllers\Admin\Cms\MessageController::class, 'index'])->name('admin_messages');
 	Route::any('/students/search', [App\Http\Controllers\Admin\StudentController::class, 'search'])->name('admin_student_search');
+	Route::any('/students/devices', [App\Http\Controllers\Admin\DeviceController::class, 'search'])->name('admin_view_devices');
 	Route::get('/contents/team', [App\Http\Controllers\Admin\Cms\ContentController::class, 'team'])->name('admin_team');
 	Route::get('/contents/about', [App\Http\Controllers\Admin\Cms\ContentController::class, 'about'])->name('admin_about');
 	Route::get('/contents/contact', [App\Http\Controllers\Admin\Cms\ContentController::class, 'contact'])->name('admin_contact');
@@ -81,8 +82,11 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/users/add', [App\Http\Controllers\Admin\UserController::class, 'add'])->name('admin_user_add');
 	Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin_user_edit');
 	Route::post('/users/save', [App\Http\Controllers\Admin\UserController::class, 'save'])->name('admin_user_save');
+	Route::get('/devices/{userid?}', [App\Http\Controllers\Admin\DeviceController::class, 'index'])->name('view_devices');
+	Route::post('/devices/{deviceid?}', [App\Http\Controllers\Admin\DeviceController::class, 'store'])->name('tag_devices');
+	Route::get('/students/search/devices/user/{userid?}', [App\Http\Controllers\Admin\DeviceController::class, 'show'])->name('view_user_devices');
 });
-Route::prefix('student')->middleware(['auth', 'role:student', 'verified', '2faselect'])->group(function () {
+Route::prefix('student')->middleware(['auth', 'role:student', 'verified','allow.device','2faselect'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');
 	Route::post('/generate-qr', [App\Http\Controllers\Student\ProfileController::class, 'generateQr']);
 	Route::get('/profile/edit', [App\Http\Controllers\Student\ProfileController::class, 'edit'])->name('student_profile_edit');
@@ -98,7 +102,7 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified', '2fase
 });
 
 // 2FA related routes
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','allow.device'])->group(function () {
 	// Email2FA 
 	Route::get('email-verify', [App\Http\Controllers\Email2FAController::class, 'index'])->name('email.verify.index');
 	Route::post('email-verify', [App\Http\Controllers\Email2FAController::class, 'store'])->name('email.verify.post');

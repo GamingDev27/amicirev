@@ -27,7 +27,6 @@
 		<script src="{{ asset('js/vendor/ckeditor5-build-classic/ckeditor.js') }}" ></script>
 		<script src="{{ asset('js/vendor/bootstrap.bundle.min.js') }}" ></script>
 		<script src="{{ asset('js/admin.js') }}" ></script>
-        <script src="{{ asset('js/vendor/jquery.min.js') }}" ></script>
         <script src="{{ asset('js/vendor/jquery.blockUI.js') }}" ></script>
         <script src="{{ asset('js/common.js') }}" ></script>
         <script src="{{ asset('js/vendor/Chart.min.js') }}" ></script>
@@ -74,6 +73,10 @@
                             <a class="nav-link" href="{{ route('admin_student_search')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
                                 SEARCH
+                            </a>
+                            <a class="nav-link" href="{{ route('view_devices')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-desktop"></i></div>
+                                DEVICES
                             </a>
                             <div class="sb-sidenav-menu-heading py-0">
                                 SEASONS

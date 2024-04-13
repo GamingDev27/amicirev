@@ -16,6 +16,7 @@
         "goodnesskay/laravelpdfviewer": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "imanghafoori/laravel-video": "^2.1",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "pragmarx/google2fa-laravel": "^2.1",
@@ -23,6 +24,7 @@
         "vimeo/laravel": "^5.6"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "itsgoingd/clockwork": "^5.2",

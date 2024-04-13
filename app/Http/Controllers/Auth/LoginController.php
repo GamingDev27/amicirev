@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Services\DeviceService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -23,6 +24,8 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    
+    protected $userDeviceService;
 
     /**
      * Where to redirect users after login.
@@ -63,8 +66,9 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(DeviceService $deviceService)
     {
+        $this->userDeviceService = $deviceService;
         $this->middleware('guest')->except('logout');
     }
 
@@ -91,7 +95,7 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            
+            $this->userDeviceService->storeDeviceInfo();            
             return $this->sendLoginResponse($request);
         }
 

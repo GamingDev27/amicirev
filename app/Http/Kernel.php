@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'role'             => \App\Http\Middleware\Role::class,
         '2fa'              => \PragmaRX\Google2FALaravel\Middleware::class,
         '2faselect'        => \App\Http\Middleware\TwoFAMiddleware::class,
+        'allow.device'     => \App\Http\Middleware\AllowDevice::class,
     ];
 }

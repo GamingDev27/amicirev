@@ -17,6 +17,7 @@
                 </div>
 
                 <div class="card-body">
+                    @include('flash-message')
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

@@ -51,6 +51,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Models\Student', 'auth_user_id');
     }
 
+    public function devices()
+    {
+        return $this->hasMany('App\Models\Device', 'user_id','id');
+    }
+
     /**
      * Set the google's 2fa code.
      *
