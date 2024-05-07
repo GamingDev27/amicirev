@@ -23,23 +23,26 @@ class AllowDevice
     {
         $agent = new Agent();
         $user = Auth::user();
-        $device = Device::where('user_id',$user->id)
-           ->where('ip_address',       request()->ip())
-           ->where('platform_name',    $agent->platform())
-           ->where('platform_version', $agent->version($agent->platform()))
-           ->where('device_name',      $agent->device())
-           ->where('device_version',   $agent->version($agent->device()))
-           ->where('browser_name',     $agent->browser())
-           ->where('browser_version',  $agent->version($agent->browser()))
-           ->first();
-        
+        $device = Device::where('user_id', $user->id)
+            ->where('ip_address',       request()->ip())
+            ->where('platform_name',    $agent->platform())
+            ->where('platform_version', $agent->version($agent->platform()))
+            ->where('device_name',      $agent->device())
+            ->where('device_version',   $agent->version($agent->device()))
+            ->where('browser_name',     $agent->browser())
+            ->where('browser_version',  $agent->version($agent->browser()))
+            ->first();
+
         if (empty($device)) {
-            return redirect('login')->with('error', 'Device not found');
+            // Session::flush();
+            // Auth::logout();
+            // return redirect('login')->with('error', 'Device not found');
+            return $next($request);
         }
-        
+
         if ($device->is_disabled) {
             Session::flush();
-	        Auth::logout();
+            Auth::logout();
             return redirect('login')->with('error', 'Your device is not allowed to access this page. Contact Amici Review Center to enable your device');
         }
 
