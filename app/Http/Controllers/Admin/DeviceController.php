@@ -54,7 +54,6 @@ class DeviceController extends Controller
         if ($deviceIds) {
             $query = Device::whereIn('id', $deviceIds)
                 ->update(['is_disabled' => $request->is_disabled, 'updated_user_id' => auth()->id()]);
-            $queries = \DB::getQueryLog();
         }
 
         return back()->with('success', 'Device updated!');

@@ -14,6 +14,7 @@ use App\Models\City;
 use App\Models\Barangay;
 use App\Models\School;
 use App\Models\Address;
+use App\Models\Device;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -46,6 +47,7 @@ class ProfileController extends Controller
         }
         /**************************/
         //return view('student.profile.index', compact('user'));
+
         return view('student.profile.index', ['user' => $user, 'QR_Image' => $QR_Image, 'secret' => $user->google2fa_secret]);
     }
 
@@ -76,7 +78,7 @@ class ProfileController extends Controller
             );
         }
 
-        return view('student.profile.edit', compact('user', 'provinces', 'cities', 'barangays', 'schools','QR_Image'));
+        return view('student.profile.edit', compact('user', 'provinces', 'cities', 'barangays', 'schools', 'QR_Image'));
     }
 
     public function changep()
@@ -118,8 +120,8 @@ class ProfileController extends Controller
             return back()->with('error', 'New password was not saved! ' . $errormessage);
     }
     public function save(Request $request)
-    {   
-        
+    {
+
         $result = false;
         $errormessage = "";
         $validator = Validator::make($request->all(), [
@@ -148,7 +150,7 @@ class ProfileController extends Controller
                 $student->year_graduated = $request->year_graduated;
                 $student->mobile = $request->mobile;
                 $student->user->use_google2fa = ($request->use_google2fa == "on" ? 1 : 0);
-                
+
                 if (isset($request->image)) {
                     //If image exist, delete the previous file:
                     if ($student->image) {
@@ -211,6 +213,4 @@ class ProfileController extends Controller
         return redirect()->action([ProfileController::class, 'index']);;
         //return response()->json(['QR_Image' => $QR_Image, 'secret' => $newGoogleKey['google2fa_secret']]);
     }
-
-    
 }

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -44,6 +45,13 @@ class LoginController extends Controller
 
         Auth::user()->session_id = \Session::getId();
         Auth::user()->save();
+
+        if (!$this->userDeviceService->verifyDeviceInfo()) {
+            Session::flush();
+            Auth::logout();
+            return redirect('login')->with('error', 'Another device is registered under this username. You cannot use this device.');
+        }
+
         return redirect()->intended($this->redirectPath());
     }
 
@@ -99,7 +107,6 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            //$this->userDeviceService->storeDeviceInfo();            
             return $this->sendLoginResponse($request);
         }
 

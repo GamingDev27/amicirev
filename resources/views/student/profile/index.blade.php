@@ -160,7 +160,7 @@
 	</div>
 </div>
 
-@unless(session()->has('withPrimaryDevice') && session()->get('withPrimaryDevice') != true)
+@unless(session()->has('withPrimaryDevice') && session()->get('withPrimaryDevice') == true)
 @include('student._store-device-modal')
 @endunless
 

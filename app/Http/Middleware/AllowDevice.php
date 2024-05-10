@@ -3,17 +3,22 @@
 namespace App\Http\Middleware;
 
 use App\Models\Device;
+use Barryvdh\Debugbar\Facades\Debugbar;
+use Barryvdh\Debugbar\Twig\Extension\Debug;
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Jenssegers\Agent\Agent;
+use Str;
 
 class AllowDevice
 {
     /**
      * Verify if the device use to login is not tagged as disabled by
-     * administrator
+     * administrator and is in user_devices table
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -23,23 +28,22 @@ class AllowDevice
     {
         $agent = new Agent();
         $user = Auth::user();
-        $device = Device::where('user_id', $user->id)
-            ->where('ip_address',       request()->ip())
-            ->where('platform_name',    $agent->platform())
-            ->where('platform_version', $agent->version($agent->platform()))
-            ->where('device_name',      $agent->device())
-            ->where('device_version',   $agent->version($agent->device()))
-            ->where('browser_name',     $agent->browser())
-            ->where('browser_version',  $agent->version($agent->browser()))
-            ->first();
 
+        //get cookie for uniqid
+        $uniqid = $request->cookie('uniqid');
+        $device = Device::where('user_id', $user->id)->first();
+
+        //fresh login/no device registered yet, allow bypass
         if (empty($device)) {
-            // Session::flush();
-            // Auth::logout();
-            // return redirect('login')->with('error', 'Device not found');
             return $next($request);
         }
 
+
+        $device = Device::where('user_id', $user->id)
+            ->withUniqidOrIP($uniqid, request()->ip())
+            ->first();
+
+        //device disabled, redirect to login page with error
         if ($device->is_disabled) {
             Session::flush();
             Auth::logout();
