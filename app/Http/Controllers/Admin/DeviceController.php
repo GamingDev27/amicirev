@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Device;
 use Illuminate\Http\Request;
-use Barryvdh\Debugbar\Facades\Debugbar;
 
 class DeviceController extends Controller
 {
@@ -50,13 +49,11 @@ class DeviceController extends Controller
                     $deviceIds[] = $device['id'];
             }
         }
-        
+
         //if is_disabled = 1, disable access
         if ($deviceIds) {
             $query = Device::whereIn('id', $deviceIds)
                 ->update(['is_disabled' => $request->is_disabled, 'updated_user_id' => auth()->id()]);
-            $queries = \DB::getQueryLog();
-            
         }
 
         return back()->with('success', 'Device updated!');
