@@ -22,6 +22,10 @@ class DeviceService
         $device = Device::where('user_id', auth()->user()->id)
             ->where('is_disabled', 0)->first();
 
+        //fresh login/no registered device yet    
+        if (empty($device)) {
+            return true;
+        }
         if (!empty($device) && ($device->uniqid != request()->cookie('uniqid') || $device->ip_address != request()->ip())) {
             return false;
         }
