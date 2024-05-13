@@ -19,16 +19,25 @@ class DeviceService
     /* verify if device is already in user_devices table */
     public function verifyDeviceInfo()
     {
+        $agent = new Agent();
         $device = Device::where('user_id', auth()->user()->id)
             ->where('is_disabled', 0)->first();
-
+        //['uniqid', 'ip_address', 'platform_name_version']
         //fresh login/no registered device yet    
         if (empty($device)) {
             return true;
         }
-        if (!empty($device) && ($device->uniqid != request()->cookie('uniqid') || $device->ip_address != request()->ip())) {
+
+
+        if (
+            !empty($device) && $device->uniqid != request()->cookie('uniqid')
+            && $device->ip_address != request()->ip()
+            && $device->flatform_name_version != $agent->platform() . ' v' . $agent->version($agent->platform())
+            && $device->device_name_version != $agent->device() . ' v' . $agent->version($agent->device())
+        ) {
             return false;
         }
+
 
         $this->addUniqidToCookie(auth()->user()->id);
         $withDevice = Device::where('user_id', auth()->user()->id)
