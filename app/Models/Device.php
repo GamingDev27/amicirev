@@ -24,6 +24,15 @@ class Device extends Model
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
+    public function getPlatformNameVersionAttribute($value)
+    {
+        return "{$this->platform_name} v{$this->platform_version}";
+    }
+
+    public function getDeviceNameVersionAttribute($value)
+    {
+        return "{$this->device_name} v{$this->device_version}";
+    }
 
     /**
      * localscopes
