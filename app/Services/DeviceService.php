@@ -28,12 +28,19 @@ class DeviceService
             return true;
         }
 
+        $diffUniqid = $device->uniqid != request()->cookie('uniqid');
+        $sameIp = $device->ip_address == request()->ip();
+        $samePlatform = $device->platform_name_version == $agent->platform() . ' v' . $agent->version($agent->platform());
+        $sameDevice = $device->device_name_version == $agent->device() . ' v' . ($agent->version($agent->device()) == "" ? "0" :  $agent->version($agent->device()));
 
+        // dump("device not empty :" . !empty($device));
+        // dump("device uniqid :" . $diffUniqid);
+        // dump("device ip :" . $sameIp);
+        // dump("device platform :" . $samePlatform);
+        // dd("device device :" . $device->device_name_version . "||" . $agent->device() . ' v' . ($agent->version($agent->device()) == "" ? "0" :  $agent->version($agent->device())));
         if (
-            !empty($device) && $device->uniqid != request()->cookie('uniqid')
-            && $device->ip_address != request()->ip()
-            && $device->flatform_name_version != $agent->platform() . ' v' . $agent->version($agent->platform())
-            && $device->device_name_version != $agent->device() . ' v' . $agent->version($agent->device())
+            !empty($device) && !($diffUniqid && $sameIp && $samePlatform && $sameDevice)
+            && !(!$diffUniqid && $sameIp && $samePlatform && $sameDevice)
         ) {
             return false;
         }
@@ -44,6 +51,10 @@ class DeviceService
             ->where('uniqid', request()->cookie('uniqid'))
             ->active()
             ->exists();
+
+        //add updating of ip/device/platform - undone (May 13)   
+        //to do-allow user to remove his device
+        //to do-allow on 3 instance of prompt before actually assigning the device
 
         if (!Session::has('withPrimaryDevice')) {
             Session::put('withPrimaryDevice', $withDevice);
