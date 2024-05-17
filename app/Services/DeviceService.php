@@ -21,7 +21,9 @@ class DeviceService
     {
         $agent = new Agent();
         $device = Device::where('user_id', auth()->user()->id)
-            ->where('is_disabled', 0)->first();
+            ->where('is_disabled', 0)
+            ->where('platform_name', $agent->platform())
+            ->first();
         //['uniqid', 'ip_address', 'platform_name_version']
         //fresh login/no registered device yet    
         if (empty($device)) {
@@ -46,18 +48,23 @@ class DeviceService
         }
 
 
-        $this->addUniqidToCookie(auth()->user()->id);
-        $withDevice = Device::where('user_id', auth()->user()->id)
-            ->where('uniqid', request()->cookie('uniqid'))
-            ->active()
-            ->exists();
+        $uniqid = $this->addUniqidToCookie(auth()->user()->id);
+        $device = Device::where('user_id', auth()->user()->id)
+            ->where('uniqid', ($uniqid ? $uniqid : request()->cookie('uniqid')))
+            ->active()->first();
 
-        //add updating of ip/device/platform - undone (May 13)   
+        //update ip/device/platform use in the current signin
+        $device->fill([
+            'ip_address' => request()->ip(), 'platform_name' => $agent->platform(), 'platform_version' => $agent->version($agent->platform()),
+            'device_name' => $agent->device(), 'device_version' => $agent->version($agent->device())
+        ]);
+        $device->save();
+
         //to do-allow user to remove his device
         //to do-allow on 3 instance of prompt before actually assigning the device
 
         if (!Session::has('withPrimaryDevice')) {
-            Session::put('withPrimaryDevice', $withDevice);
+            Session::put('withPrimaryDevice', $device->exists());
         }
         return true;
     }
@@ -110,6 +117,8 @@ class DeviceService
             Session::put('withPrimaryDevice', true);
             $cookie = Cookie::make('uniqid', $uniqid, 60 * 24 * 90); // 3 months expiration
             Cookie::queue($cookie);
+            return $uniqid;
         }
+        return null;
     }
 }

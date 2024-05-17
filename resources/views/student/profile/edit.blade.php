@@ -256,13 +256,24 @@
 					{!! $QR_Image !!}
 				</div>
 				<div class="form-group row p-3">
-					<input type="checkbox" {{ $user->use_google2fa ? 'checked' : '' }} 
-					data-toggle="toggle" data-size="sm" class="float-left" 
+					<input type="checkbox" {{ $user->use_google2fa ? 'checked' : '' }}
+					data-toggle="toggle" data-size="sm" class="float-left"
 					name="use_google2fa">
-					<label for="house_lot"
-					class="col-form-label text-light col-10 col-lg-8 text-md-left py-0">Use Google QR Image as my primary login verification.</label>
+					<label for="house_lot" class="col-form-label text-light col-10 col-lg-8 text-md-left py-0">Use
+						Google QR Image as my primary login verification.</label>
 				</div>
 				@endisset
+
+				<div class="h5 mt-5 pb-2 border-bottom border-dark text-light">Active Devices</div>
+				<p class="form-text text-light">
+					You are currently signed in to Amici Review Center using the following devices:
+				</p>
+
+				<div class="d-flex flex-wrap" style="gap: 1rem">
+					@foreach($user->devices as $index => $device)
+					@include('student.profile._card-device-info',['allowEditing' => true])
+					@endforeach
+				</div>
 				<hr class="bg-dark" />
 				<div class="col-12 col-lg-6">
 					<button class="btn btn-primary btn-xl text-uppercase btn-block" id="sendMessageButton"
@@ -273,6 +284,8 @@
 			</div>
 	</form>
 </div>
+
+@include('student.profile.modal.delete-device-confirmation')
 @endsection
 
 @once
@@ -304,6 +317,40 @@
 			changeYear: true,
 			orientation:"bottom"
 		});	
+
+		jQuery("a.delete-device").on("click",function() {			
+			//assign deviceId to modal
+			$('#device-id').html($(this).data('id'));
+
+		});
+
+		jQuery("button.delete-device-confirm").on("click",function(){
+			const deviceId = $("#device-id").text();
+			let routeUrl = "{{ route('student_profile_delete_device',':deviceId') }}";
+			routeUrl = routeUrl.replace(':deviceId',deviceId);
+			
+			$.ajax({
+				url: routeUrl,
+				type: 'DELETE',
+				headers: {
+				'X-CSRF-Token': '{{ csrf_token() }}',
+        	},
+            success: function(data) {
+				if(data.success){
+					$('#deleteDeviceModal').modal('hide');
+					setTimeout(function() {
+                        location.reload();
+                    }, 1000); // 2-second delay
+				}
+				
+				
+			},
+			error: function(data) {
+                    alert('Error deleting record.');
+            }
+			});
+		});
+
 	});
 
 </script>
