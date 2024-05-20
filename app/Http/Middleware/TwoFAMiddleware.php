@@ -30,6 +30,7 @@ class TwoFAMiddleware
             return app(\PragmaRX\Google2FALaravel\Middleware::class)->handle($request, $next);
         }
 
-        return app(\App\Http\Middleware\Email2FA::class)->handle($request, $next);
+        return $next($request);
+        //return app(\App\Http\Middleware\Email2FA::class)->handle($request, $next);
     }
 }

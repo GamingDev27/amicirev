@@ -86,7 +86,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 	Route::post('/devices/{deviceid?}', [App\Http\Controllers\Admin\DeviceController::class, 'store'])->name('tag_devices');
 	Route::get('/students/search/devices/user/{userid?}', [App\Http\Controllers\Admin\DeviceController::class, 'show'])->name('view_user_devices');
 });
-Route::prefix('student')->middleware(['auth', 'role:student', 'verified', 'allow.device'])->group(function () {
+Route::prefix('student')->middleware(['auth', 'role:student', 'verified', 'allow.device', '2faselect'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');
 	Route::get('/profile/edit', [App\Http\Controllers\Student\ProfileController::class, 'edit'])->name('student_profile_edit');
 	Route::get('/profile/changep', [App\Http\Controllers\Student\ProfileController::class, 'changep'])->name('student_profile_changep');
