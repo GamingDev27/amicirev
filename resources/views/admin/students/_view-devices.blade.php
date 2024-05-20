@@ -38,7 +38,6 @@
                                         <option value="x" selected>--DEVICE STATUS--</option>
                                         <option value="0">ALLOWED</option>
                                         <option value="1">DISABLED</option>
-                                        <option value="6">DELETE</option>
                                     </select>
                                 </td>
                             </tr>

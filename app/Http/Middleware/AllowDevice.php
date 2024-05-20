@@ -46,7 +46,7 @@ class AllowDevice
             ->first();
 
         //device disabled, redirect to login page with error
-        if ($device->is_disabled) {
+        if ($device && $device->is_disabled) {
             Session::flush();
             Auth::logout();
             return redirect('login')->with('error', 'Your device is not allowed to access this page. Contact Amici Review Center to enable your device');
