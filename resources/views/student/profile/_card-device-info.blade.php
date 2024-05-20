@@ -24,7 +24,7 @@ $class .= (strtoupper($device->platform_name) == "WINDOWS"? " fa-laptop" : " fa-
     </div>
     <div class="card-body ">
         <h5 class="card-title">{{ $device->platform_name }}</h5>
-        <p class="card-text text-muted">{{ $device->updated_at }}</p>
-        <p class="card-text text-muted">First Sign-in: {{ $device->created_at }}</p>
+        <div class="card-text text-muted">{{ $device->updated_at }}</div>
+        <div class="card-text text-muted">First Sign-in: {{ $device->created_at }}</div>
     </div>
 </div>

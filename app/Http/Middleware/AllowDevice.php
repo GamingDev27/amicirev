@@ -31,7 +31,8 @@ class AllowDevice
 
         //get cookie for uniqid
         $uniqid = $request->cookie('uniqid');
-        $device = Device::where('user_id', $user->id)->first();
+        $device = Device::where('user_id', $user->id)
+            ->where('is_disabled', 0)->first();
 
         //fresh login/no device registered yet, allow bypass
         if (empty($device)) {
@@ -41,6 +42,7 @@ class AllowDevice
 
         $device = Device::where('user_id', $user->id)
             ->withUniqidOrIP($uniqid, request()->ip())
+            ->where('platform_name', $agent->platform())
             ->first();
 
         //device disabled, redirect to login page with error
