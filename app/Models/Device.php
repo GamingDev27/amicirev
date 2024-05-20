@@ -21,7 +21,7 @@ class Device extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\Models\User', 'id', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id', 'id',);
     }
 
     public function getPlatformNameVersionAttribute($value)
@@ -33,6 +33,17 @@ class Device extends Model
     {
         return "{$this->device_name} v{$this->device_version}";
     }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('l, M d, Y H:i');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('M d, Y');
+    }
+
 
     /**
      * localscopes

@@ -25,11 +25,7 @@ class ProfileController extends Controller
     {
         if (Auth::user()) {
             $user = User::where('id', Auth::user()->id)
-                ->with('student')
-                ->with('student.address')
-                ->with('student.address.province')
-                ->with('student.address.city')
-                ->with('student.address.barangay')
+                ->with(['student', 'student.address', 'student.address.province', 'student.address.city', 'student.address.city', 'devices'])
                 ->first();
         }
 
@@ -47,7 +43,6 @@ class ProfileController extends Controller
         }
         /**************************/
         //return view('student.profile.index', compact('user'));
-
         return view('student.profile.index', ['user' => $user, 'QR_Image' => $QR_Image, 'secret' => $user->google2fa_secret]);
     }
 
@@ -212,5 +207,12 @@ class ProfileController extends Controller
         /**************************/
         return redirect()->action([ProfileController::class, 'index']);;
         //return response()->json(['QR_Image' => $QR_Image, 'secret' => $newGoogleKey['google2fa_secret']]);
+    }
+
+    public function delete(Device $device)
+    {
+        $device->delete();
+        Session::flash('success', 'Device removed');
+        return response()->json(['success' => true, 'message' => 'Device removed']);
     }
 }

@@ -88,11 +88,14 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 });
 Route::prefix('student')->middleware(['auth', 'role:student', 'verified', 'allow.device', '2faselect'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');
-	Route::post('/generate-qr', [App\Http\Controllers\Student\ProfileController::class, 'generateQr']);
 	Route::get('/profile/edit', [App\Http\Controllers\Student\ProfileController::class, 'edit'])->name('student_profile_edit');
 	Route::get('/profile/changep', [App\Http\Controllers\Student\ProfileController::class, 'changep'])->name('student_profile_changep');
 	Route::post('/profile/save', [App\Http\Controllers\Student\ProfileController::class, 'save'])->name('student_profile_save');
 	Route::post('/profile/savep', [App\Http\Controllers\Student\ProfileController::class, 'savep'])->name('student_profile_savep');
+	Route::delete('/profile/device/{device:id}', [App\Http\Controllers\Student\ProfileController::class, 'delete'])->name('student_profile_delete_device');
+
+	Route::post('/generate-qr', [App\Http\Controllers\Student\ProfileController::class, 'generateQr']);
+
 	Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index']);
 	Route::get('/portal/show/{batchid}/{courseid?}/{subjectid?}', [App\Http\Controllers\Student\PortalController::class, 'show'])->name('student_portal_show');
 	Route::get('/portal/showv2/{batchid}/{courseid?}/{subjectid?}', [App\Http\Controllers\Student\PortalController::class, 'showv2'])->name('student_portal_showv2');

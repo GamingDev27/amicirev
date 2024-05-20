@@ -20,34 +20,68 @@ class DeviceService
     public function verifyDeviceInfo()
     {
         $agent = new Agent();
+        $user_platform = $agent->platform();
+        $user_ipaddress = request()->ip();
+
+        /************************
+         * If there is an uniqid first and found in table, allow login
+         *************************/
         $device = Device::where('user_id', auth()->user()->id)
-            ->where('is_disabled', 0)->first();
-        //['uniqid', 'ip_address', 'platform_name_version']
-        //fresh login/no registered device yet    
-        if (empty($device)) {
+            ->where('uniqid', request()->cookie('uniqid'))
+            ->active()->first();
+        if ($device) {
+            $this->storeSession($device, $agent);
             return true;
         }
+        //END 
 
+        /************************
+         * If no uniqid found, verify if another device exists
+         *************************/
+        $device = Device::where('user_id', auth()->user()->id)
+            ->where(function ($query) use ($user_platform, $user_ipaddress) {
+                $query->where('platform_name', $user_platform)
+                    ->OrWhere('ip_address', $user_ipaddress);
+            })
+            ->first();
 
-        if (
-            !empty($device) && $device->uniqid != request()->cookie('uniqid')
-            && $device->ip_address != request()->ip()
-            && $device->flatform_name_version != $agent->platform() . ' v' . $agent->version($agent->platform())
-            && $device->device_name_version != $agent->device() . ' v' . $agent->version($agent->device())
-        ) {
+        //another device exist and is currently not disabled
+        if (!$device) {
+            return true;
+        }
+        if (($device->platform_name !== $agent->platform() || $device->ip_address !== request()->ip()) && $device->is_disabled == 0) {
             return false;
         }
 
 
-        $this->addUniqidToCookie(auth()->user()->id);
-        $withDevice = Device::where('user_id', auth()->user()->id)
-            ->where('uniqid', request()->cookie('uniqid'))
-            ->active()
-            ->exists();
+        /* $diffUniqid = $device->uniqid != request()->cookie('uniqid');
+        $sameIp = $device->ip_address == request()->ip();
+        $samePlatform = $device->platform_name_version == $agent->platform() . ' v' . $agent->version($agent->platform());
+        $sameDevice = $device->device_name_version == $agent->device() . ' v' . ($agent->version($agent->device()) == "" ? "0" :  $agent->version($agent->device()));
+        */
+        // dump("device not empty :" . !empty($device));
+        // dump("device uniqid :" . $diffUniqid);
+        // dump("device ip :" . $sameIp);
+        // dump("device platform :" . $samePlatform);
+        // dd("device device :" . $device->device_name_version . "||" . $agent->device() . ' v' . ($agent->version($agent->device()) == "" ? "0" :  $agent->version($agent->device())));
+        /* if (
+            !empty($device) && !($diffUniqid && $sameIp && $samePlatform && $sameDevice)
+            && !(!$diffUniqid && $sameIp && $samePlatform && $sameDevice)
+        ) {
+            return false;
+        } */
 
-        if (!Session::has('withPrimaryDevice')) {
-            Session::put('withPrimaryDevice', $withDevice);
+
+        $uniqid = $this->addUniqidToCookie(auth()->user()->id);
+        $device = Device::where('user_id', auth()->user()->id)
+            ->where('uniqid', ($uniqid ? $uniqid : request()->cookie('uniqid')))
+            ->active()->first();
+
+        //update ip/device/platform use in the current signin
+        if ($device) {
+            $this->storeSession($device, $agent);
         }
+
         return true;
     }
 
@@ -89,6 +123,10 @@ class DeviceService
                 ->withUniqidOrIP('', request()->ip())
                 ->first();
 
+            if (!$device) {
+                return null;
+            }
+
             $uniqid = (!empty($device->uniqid) ? $device->uniqid : Str::random(16));
 
             //update expiry and uniqid value
@@ -99,6 +137,21 @@ class DeviceService
             Session::put('withPrimaryDevice', true);
             $cookie = Cookie::make('uniqid', $uniqid, 60 * 24 * 90); // 3 months expiration
             Cookie::queue($cookie);
+            return $uniqid;
+        }
+        return null;
+    }
+
+    public function storeSession(Device $device, Agent $agent)
+    {
+        $device->fill([
+            'ip_address' => request()->ip(), 'platform_name' => $agent->platform(), 'platform_version' => $agent->version($agent->platform()),
+            'device_name' => $agent->device(), 'device_version' => $agent->version($agent->device())
+        ]);
+        $device->save();
+
+        if (!Session::has('withPrimaryDevice')) {
+            Session::put('withPrimaryDevice', $device->exists());
         }
     }
 }

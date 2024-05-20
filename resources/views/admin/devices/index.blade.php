@@ -31,7 +31,9 @@
                                     <select type="text" class="form-control form-select-clear" name="platform">
                                         <option value=""><em>--PLATFORM--</em></option>
                                         @foreach ($platforms as $platform)
-                                        <option value="{{ $platform->platform_name }}" {{ request('platform')==$platform->platform_name ? 'selected' : '' }}>{{ $platform->platform_name }}
+                                        <option value="{{ $platform->platform_name }}" {{
+                                            request('platform')==$platform->platform_name ? 'selected' : '' }}>{{
+                                            $platform->platform_name }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -40,7 +42,9 @@
                                     <select type="text" class="form-control form-select-clear" name="device">
                                         <option value=""><em>--DEVICES--</em></option>
                                         @foreach ($devices_name as $device_name)
-                                        <option value="{{ $device_name->device_name }}" {{ request('device')==$device_name->device_name ? 'selected' : '' }}>{{ $device_name->device_name }}
+                                        <option value="{{ $device_name->device_name }}" {{
+                                            request('device')==$device_name->device_name ? 'selected' : '' }}>{{
+                                            $device_name->device_name }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -49,7 +53,8 @@
                                     <select type="text" class="form-control form-select-clear" name="browser">
                                         <option value=""><em>--BROWSERS--</em></option>
                                         @foreach ($browsers as $browser)
-                                        <option value="{{ $browser->browser_name }}" {{ request('browser')==$browser->browser_name ? 'selected' : '' }}>{{ $browser->browser_name }}
+                                        <option value="{{ $browser->browser_name }}" {{ request('browser')==$browser->
+                                            browser_name ? 'selected' : '' }}>{{ $browser->browser_name }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -86,8 +91,7 @@
         </div>
     </form>
 </div>
-<form action="{{ route('tag_devices')}}" onsubmit="return confirm('Are you sure?');" method="POST"
-    role="search">
+<form action="{{ route('tag_devices')}}" onsubmit="return confirm('Are you sure?');" method="POST" role="search">
     @csrf
     <table class="table table-sm table-bordered table-condensed data-tbl table-responsive-sm table-striped table-hover"
         id="dataTable" width="100%" cellspacing="0">
@@ -109,21 +113,22 @@
         </thead>
 
         <tbody class="devices">
-            
+
             @foreach($devices as $index => $device)
             <tr>
                 <td class="text-center text-body d-none">{{ $device->id }}</td>
                 <td class="d-flex justify-content-center ">
                     <div class="mx-auto">
-                        <input type="checkbox" name="devices[{{$index}}][checked]"
-                            id="device_{{$device->id }}_checked" class="h-100" />
+                        <input type="checkbox" name="devices[{{$index}}][checked]" id="device_{{$device->id }}_checked"
+                            class="h-100" />
                         <input type="hidden" name="devices[{{$index}}][id]" value="{{$device->id }}"
                             id="device_{{$device->id }}_id" />
                         <input type="hidden" name="devices[{{$index}}][user_id]" value="{{$device->id }}"
                             id="device_{{$device->id }}_user_id" />
                     </div>
                 </td>
-                <td class="text-body text-wrap">{{ ucfirst($device->user->student->last_name).', '.ucfirst($device->user->student->first_name) }}</td>
+                <td class="text-body text-wrap">{{ ucfirst($device->user->student->last_name).',
+                    '.ucfirst($device->user->student->first_name) }}</td>
                 <td class="text-body text-wrap text-center">{{ $device->user->email }}</td>
                 <td class="text-center col-md-1">
                     <span
@@ -150,6 +155,7 @@
                         <option value="x">--DEVICE STATUS--</option>
                         <option value="0">ALLOWED</option>
                         <option value="1">DISABLED</option>
+
                     </select>
                 </td>
                 <td colspan="7">

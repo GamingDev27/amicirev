@@ -111,13 +111,16 @@
 					Image</button>
 			</div>
 
+			@include('student.profile.modal.qr-confirmation')
+
 			@isset($QR_Image)
 			<div class="form-group">
 				<small id="mobileHelp" class="form-text text-light">Scan this QR code using google authenticator
 					application
 					to verify your account when logging in. Download the google authenticator in playstore for android
 					and
-					app store for iOS devices. You may also your the secret key <strong>{{ $secret }}</strong> to link
+					app store for iOS devices. You may also use your the secret key <strong>{{ $secret }}</strong> to
+					link
 					you authenticator code without using the QR scanner.
 				</small>
 				<div class="mt-4" id="qrImage">
@@ -134,29 +137,19 @@
 			</div>
 			@endisset
 
+			<div class="h5 mt-5 pb-2 border-bottom border-dark text-light">Active Devices</div>
+			<p class="form-text text-light">
+				You are currently signed in to Amici Review Center using the following devices:
+			</p>
 
-		</div>
-
-		<!--QR Confirm Modal-->
-		<div class="modal fade" id="qrConfirmModal" tabindex="-1" aria-labelledby="qrConfirmModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-body">
-						<p>Generating a new QR image will invalidate any previous QR links under AMICI in your Google
-							Authenticator
-							app. Are you sure you want to continue?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-success" id="generateQr" data-dismiss="modal">Generate QR
-							Image</button>
-
-					</div>
-				</div>
+			<div class="d-flex flex-wrap" style="gap: 1rem">
+				@foreach($user->devices as $index => $device)
+				@include('student.profile._card-device-info',['allowEditing' => false])
+				@endforeach
 			</div>
 		</div>
-		<!--QR Confirm Modal-->
+
+
 	</div>
 </div>
 
@@ -191,10 +184,8 @@
 					
 				});
 		});
+	
 	});
-
-
-			
 </script>
 
 
