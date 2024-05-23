@@ -119,7 +119,7 @@
 					application
 					to verify your account when logging in. Download the google authenticator in playstore for android
 					and
-					app store for iOS devices. You may also use your the secret key <strong>{{ $secret }}</strong> to
+					app store for iOS devices. You may also use your secret key <strong>{{ $secret }}</strong> to
 					link
 					you authenticator code without using the QR scanner.
 				</small>
@@ -132,7 +132,8 @@
 					data-toggle="toggle" data-size="sm" class="float-left"
 					name="use_google2fa_disabled" disabled>
 					<label for="house_lot" class="col-form-label text-light col-10 col-lg-8 text-md-left py-0">Use
-						Google QR Image as my primary login verification.</label>
+						Google QR Image as my primary login verification. <strong>(Do not forget to register
+							your QR Code first before enabling this!)</strong></label>
 				</div>
 			</div>
 			@endisset

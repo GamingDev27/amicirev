@@ -92,7 +92,7 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified', 'allow
 	Route::get('/profile/changep', [App\Http\Controllers\Student\ProfileController::class, 'changep'])->name('student_profile_changep');
 	Route::post('/profile/save', [App\Http\Controllers\Student\ProfileController::class, 'save'])->name('student_profile_save');
 	Route::post('/profile/savep', [App\Http\Controllers\Student\ProfileController::class, 'savep'])->name('student_profile_savep');
-	Route::delete('/profile/device/{device:id}', [App\Http\Controllers\Student\ProfileController::class, 'delete'])->name('student_profile_delete_device');
+	//Route::delete('/profile/device/{device:id}', [App\Http\Controllers\Student\ProfileController::class, 'delete'])->name('student_profile_delete_device');
 
 	Route::post('/generate-qr', [App\Http\Controllers\Student\ProfileController::class, 'generateQr']);
 
