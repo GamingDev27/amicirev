@@ -79,6 +79,11 @@ class Device extends Model
         return $query->where('uniqid_expiry', '>=', Carbon::now());
     }
 
+    public function scopeEnabledDevices($query)
+    {
+        return $query->where('is_disabled', '0');
+    }
+
     /* use to check if the uniqid from cookie or ip address is in user_devices */
     public function scopewithUniqidOrIP($query, $uniqid, $requestIP)
     {

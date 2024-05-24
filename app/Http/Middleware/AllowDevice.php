@@ -28,20 +28,12 @@ class AllowDevice
     {
         $agent = new Agent();
         $user = Auth::user();
-
-        //get cookie for uniqid
         $uniqid = $request->cookie('uniqid');
-        $device = Device::where('user_id', $user->id)
-            ->where('is_disabled', 0)->first();
 
-        //fresh login/no device registered yet, allow bypass
-        if (empty($device)) {
-            return $next($request);
-        }
 
 
         $device = Device::where('user_id', $user->id)
-            ->withUniqidOrIP($uniqid, request()->ip())
+            ->where('uniqid', $uniqid)
             ->where('platform_name', $agent->platform())
             ->first();
 
@@ -50,6 +42,16 @@ class AllowDevice
             Session::flush();
             Auth::logout();
             return redirect('login')->with('error', 'Your device is not allowed to access this page. Contact Amici Review Center to enable your device');
+        }
+
+        //get cookie for uniqid
+
+        $device = Device::where('user_id', $user->id)
+            ->where('is_disabled', 0)->first();
+
+        //fresh login/no device registered yet, allow bypass
+        if (empty($device)) {
+            return $next($request);
         }
 
         return $next($request);

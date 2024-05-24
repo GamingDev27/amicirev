@@ -6,9 +6,11 @@ use App\Models\Device;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
+
 
 /**
  * DeviceService
@@ -28,6 +30,7 @@ class DeviceService
          *************************/
         $device = Device::where('user_id', auth()->user()->id)
             ->where('uniqid', request()->cookie('uniqid'))
+            ->where('platform_name', $user_platform)
             ->active()->first();
         if ($device) {
             $this->storeSession($device, $agent);
@@ -39,40 +42,29 @@ class DeviceService
          * If no uniqid found, verify if another device exists
          *************************/
         $device = Device::where('user_id', auth()->user()->id)
-            ->where(function ($query) use ($user_platform, $user_ipaddress) {
-                $query->where('platform_name', $user_platform)
-                    ->OrWhere('ip_address', $user_ipaddress);
-            })
+            ->where('platform_name', $user_platform)
+            ->where('ip_address', $user_ipaddress)
+            ->where('is_disabled', 0)
             ->first();
-
-        //another device exist and is currently not disabled
         if (!$device) {
+            $device = Device::where('user_id', auth()->user()->id)
+                ->where(function ($query) use ($user_platform, $user_ipaddress) {
+                    $query->where('platform_name', $user_platform)
+                        ->OrWhere('ip_address', $user_ipaddress);
+                })
+                ->first();
+        }
+        if (!$device) {
+            //allowed login and enable adding of new device
             return true;
         }
+        //check if another device exist and is currently not disabled
         if (($device->platform_name !== $agent->platform() || $device->ip_address !== request()->ip()) && $device->is_disabled == 0) {
             return false;
         }
 
 
-        /* $diffUniqid = $device->uniqid != request()->cookie('uniqid');
-        $sameIp = $device->ip_address == request()->ip();
-        $samePlatform = $device->platform_name_version == $agent->platform() . ' v' . $agent->version($agent->platform());
-        $sameDevice = $device->device_name_version == $agent->device() . ' v' . ($agent->version($agent->device()) == "" ? "0" :  $agent->version($agent->device()));
-        */
-        // dump("device not empty :" . !empty($device));
-        // dump("device uniqid :" . $diffUniqid);
-        // dump("device ip :" . $sameIp);
-        // dump("device platform :" . $samePlatform);
-        // dd("device device :" . $device->device_name_version . "||" . $agent->device() . ' v' . ($agent->version($agent->device()) == "" ? "0" :  $agent->version($agent->device())));
-        /* if (
-            !empty($device) && !($diffUniqid && $sameIp && $samePlatform && $sameDevice)
-            && !(!$diffUniqid && $sameIp && $samePlatform && $sameDevice)
-        ) {
-            return false;
-        } */
-
-
-        $uniqid = $this->addUniqidToCookie(auth()->user()->id);
+        $uniqid = $this->addUniqidToCookie(auth()->user()->id, $user_platform);
         $device = Device::where('user_id', auth()->user()->id)
             ->where('uniqid', ($uniqid ? $uniqid : request()->cookie('uniqid')))
             ->active()->first();
@@ -115,11 +107,13 @@ class DeviceService
     }
 
 
-    public function addUniqidToCookie($userId)
+    public function addUniqidToCookie($userId, $platform)
     {
         //if cookie does not exist, store cookie and update expiry only for login
         if (empty(request()->cookie('uniqid'))) {
             $device = Device::where('user_id', $userId)
+                ->where('platform_name', $platform)
+                ->where('is_disabled', 0)
                 ->withUniqidOrIP('', request()->ip())
                 ->first();
 
@@ -144,11 +138,11 @@ class DeviceService
 
     public function storeSession(Device $device, Agent $agent)
     {
-        $device->fill([
-            'ip_address' => request()->ip(), 'platform_name' => $agent->platform(), 'platform_version' => $agent->version($agent->platform()),
-            'device_name' => $agent->device(), 'device_version' => $agent->version($agent->device())
-        ]);
-        $device->save();
+        // $device->fill([
+        //     'ip_address' => request()->ip(),
+        //     'device_name' => $agent->device(), 'device_version' => $agent->version($agent->device())
+        // ]);
+        // $device->save();
 
         if (!Session::has('withPrimaryDevice')) {
             Session::put('withPrimaryDevice', $device->exists());
