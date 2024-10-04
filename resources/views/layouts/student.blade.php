@@ -32,9 +32,10 @@
     <script src="{{ asset('js/vendor/jquery.blockUI.js') }}"></script>
     <script src="{{ asset('js/vendor/player/dist/player.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
-    
 
 
+    {{-- custom css here --}}
+    @stack('styles')
 
 </head>
 
@@ -97,6 +98,11 @@
                         </div>
                         @endforeach
                         @endif
+
+                        <a class="nav-link" href="{{ route('live') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-video"></i></i></div>
+                            LIVE
+                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -130,6 +136,7 @@
                 </div>
             </footer>
             @stack('scripts')
+            <script src="https://www.youtube.com/iframe_api"></script>
         </div>
     </div>
     <script src="{{ asset('js/polling.js') }}"></script>
