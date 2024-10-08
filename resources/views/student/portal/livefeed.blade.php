@@ -159,6 +159,7 @@
         });
 
         $('#fullscreen').click(function(event) {
+            player.playVideo();
             var requestFullScreen = videoContainer.requestFullscreen || videoContainer.mozRequestFullScreen || videoContainer.webkitRequestFullscreen || videoContainer.msRequestFullscreen;
             if (requestFullScreen) {
                 requestFullScreen.call(videoContainer);
