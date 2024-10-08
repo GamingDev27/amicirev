@@ -94,7 +94,9 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->grou
 	Route::post('/portal/join', [App\Http\Controllers\Student\PortalController::class, 'join'])->name('student_portal_join');
 	Route::any('/attachment/stream/{code}', [App\Http\Controllers\Admin\AttachmentController::class, 'stream'])->name('student_stream_mov');
 
-	Route::get('/live', [App\Http\Controllers\Student\LiveController::class, 'index'])->name('live');
+	Route::get('/live', function () {
+		return view('student.portal.livefeed');
+	})->name('live');
 });
 
 Route::get('/logout', function () {
