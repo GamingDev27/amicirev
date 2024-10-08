@@ -48,7 +48,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.05);
         /* Adjust for visibility */
         z-index: 10;
         /* Ensure it's above the iframe */
