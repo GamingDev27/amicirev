@@ -15,6 +15,11 @@
     </div>
 </div>
 
+<div class="d-flex justify-content-center mb-2">
+    <button class="btn btn-primary btn-fullscreen" id="fullscreen" style="display:none;">Fullscreen</button>
+</div>
+
+
 @endsection
 
 
@@ -54,6 +59,10 @@
         /* Ensure it's above the iframe */
         pointer-events: all;
         /* Block clicks */
+    }
+
+    .btn-fullscreen {
+        z-index: 12;
     }
 
     .hidden {
@@ -136,6 +145,7 @@
         $(document).on('keydown', function(event) {
             if (event.key === "Escape") {
                 $('#videoContainer').removeClass('fullscreen');
+                $('#fullscreen').show(); 
                 //$('#overlay').addClass('hidden');
             }
         });
@@ -143,8 +153,18 @@
         document.addEventListener('fullscreenchange', function() {
             if (!document.fullscreenElement) {
                 $('#videoContainer').removeClass('fullscreen');
+                $('#fullscreen').show(); 
                 //$('#overlay').addClass('hidden'); 
             }
+        });
+
+        $('#fullscreen').click(function(event) {
+            var requestFullScreen = videoContainer.requestFullscreen || videoContainer.mozRequestFullScreen || videoContainer.webkitRequestFullscreen || videoContainer.msRequestFullscreen;
+            if (requestFullScreen) {
+                requestFullScreen.call(videoContainer);
+                videoContainer.addClass('fullscreen'); // Add fullscreen class to the video container
+                
+            } 
         });
     }
 </script>
