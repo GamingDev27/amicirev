@@ -95,7 +95,8 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->grou
 	Route::any('/attachment/stream/{code}', [App\Http\Controllers\Admin\AttachmentController::class, 'stream'])->name('student_stream_mov');
 
 	Route::get('/live', function () {
-		return view('student.portal.livefeed');
+		$user = Auth::user();
+		return view('student.portal.livefeed', ['user' => $user]);
 	})->name('live');
 });
 

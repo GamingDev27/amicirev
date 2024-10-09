@@ -8,8 +8,14 @@
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="youtube-player"
         style="display:none;"></iframe>
     <div class="overlay hidden" id="overlay"></div>
+    @if ($user->verified)
     <button class="btn btn-primary " id="start-video"><i class="fas fa-video mx-2"></i>View Livestream</button>
-
+    @else
+    <div class="alert alert-warning text-center shadow p-5" role="alert">
+        <h4 class="alert-heading">Account Not Verified</h4>
+        <p>Your account is not verified. Please contact the Amici Review center.</p>
+    </div>
+    @endif
     <div class="spinner-border text-primary" role="status" id="spinner" style="display: none;">
         <span class="sr-only">Loading...</span>
     </div>

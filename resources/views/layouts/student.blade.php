@@ -99,10 +99,12 @@
                         @endforeach
                         @endif
 
+                        @if(Auth::user()->verified)
                         <a class="nav-link" href="{{ route('live') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-video"></i></i></div>
                             LIVE
                         </a>
+                        @endif
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
