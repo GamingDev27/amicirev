@@ -34,9 +34,9 @@ class LoginController extends Controller
 	public function authenticated(Request $request,$user){
 		$previous_session = $user->session_id;
 
-		if ($previous_session) {
-			\Session::getHandler()->destroy($previous_session);
-		}
+		// if ($previous_session) {
+		// 	\Session::getHandler()->destroy($previous_session);
+		// }
 
 		Auth::user()->session_id = \Session::getId();
 		Auth::user()->save();
