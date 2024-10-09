@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="video-container" id="videoContainer">
-    <iframe src="https://www.youtube.com/embed/MVRNtoyXJvw?si=xyNJMx0x7DS_qZ4j&amp;controls=0&enablejsapi=1"
+    <iframe src="https://www.youtube.com/embed/pZJVMXqq4Ek?si=tLuA1v-YZPe9E7I2&amp;controls=0&enablejsapi=1"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="youtube-player"
