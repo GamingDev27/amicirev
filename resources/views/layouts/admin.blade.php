@@ -33,7 +33,17 @@
         <script src="{{ asset('js/vendor/Chart.min.js') }}" ></script>
         
         
-        
+        <style>
+            .icon-placeholder {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #f8f9fa;
+                height: 100%;
+                color: #6c757d;
+                font-size: 2rem;
+            }
+        </style>
     
     </head>
     <body class="sb-nav-fixed">
@@ -71,10 +81,14 @@
                                 DASHBOARD
                             </a>
                             <div class="sb-sidenav-menu-heading py-0">STUDENTS</div>
-                            <a class="nav-link" href="{{ route('admin_student_search')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
-                                SEARCH
-                            </a>
+                                <a class="nav-link" href="{{ route('admin_student_search')}}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                                    SEARCH
+                                </a>
+                                <a class="nav-link" href="{{ route('admin_live_setup') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
+                                    Live Setup
+                                </a>    
                             <div class="sb-sidenav-menu-heading py-0">
                                 SEASONS
                                 <a class="btn btn-dark m-0 p-0 px-1 float-right" href="{{ route('admin_season_add') }}">

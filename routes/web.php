@@ -80,6 +80,14 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/users/add', [App\Http\Controllers\Admin\UserController::class, 'add'])->name('admin_user_add');
 	Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin_user_edit');
 	Route::post('/users/save', [App\Http\Controllers\Admin\UserController::class, 'save'])->name('admin_user_save');
+	
+	// Live Stream
+	Route::get('/live', [App\Http\Controllers\Admin\LiveSetupController::class, 'index'])->name('admin_live_setup');
+	Route::get('/live/add', [App\Http\Controllers\Admin\LiveSetupController::class, 'add'])->name('admin_live_add');
+	Route::post('/live/save', [App\Http\Controllers\Admin\LiveSetupController::class, 'save'])->name('admin_live_save');
+	Route::post('/live/remove', [App\Http\Controllers\Admin\LiveSetupController::class, 'delete'])->name('admin_live_delete');
+	Route::get('/live/edit/{liveid}', [App\Http\Controllers\Admin\LiveSetupController::class, 'edit'])->name('admin_live_edit');
+	Route::post('/live/update', [App\Http\Controllers\Admin\LiveSetupController::class, 'update'])->name('admin_live_update');
 });
 Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');
