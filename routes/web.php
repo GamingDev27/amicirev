@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\LiveStreamLink;
 use App\Models\SessionModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -80,7 +81,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/users/add', [App\Http\Controllers\Admin\UserController::class, 'add'])->name('admin_user_add');
 	Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin_user_edit');
 	Route::post('/users/save', [App\Http\Controllers\Admin\UserController::class, 'save'])->name('admin_user_save');
-	
+
 	// Live Stream
 	Route::get('/live', [App\Http\Controllers\Admin\LiveSetupController::class, 'index'])->name('admin_live_setup');
 	Route::get('/live/add', [App\Http\Controllers\Admin\LiveSetupController::class, 'add'])->name('admin_live_add');
@@ -105,7 +106,8 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->grou
 
 	Route::get('/live', function () {
 		$user = Auth::user();
-		return view('student.portal.livefeed', ['user' => $user]);
+		$livestream = LiveStreamLink::where('is_active', 1)->orderBy('date_stream', 'desc')->first();
+		return view('student.portal.livefeed', ['user' => $user, 'livestream' => $livestream]);
 	})->name('live');
 });
 

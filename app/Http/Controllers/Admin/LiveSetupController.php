@@ -13,7 +13,7 @@ class LiveSetupController extends Controller
 	public function index()
 	{
 		$seasons = Season::where('enabled', 1)->get();
-		$livestream = LiveStreamLink::with('season')->get();
+		$livestream = LiveStreamLink::with('season')->paginate(10)->onEachSide(3);
 		return view('admin.live.index', compact(['seasons', 'livestream']));
 	}
 
@@ -136,7 +136,7 @@ class LiveSetupController extends Controller
 		}
 
 		$query->with('season');
-		$livestream = $query->paginate(15)->onEachSide(3);
+		$livestream = $query->paginate(10)->onEachSide(3);
 		if ($streamname)
 			$livestream->appends(['stream_name' => $streamname]);
 		if ($isActive)

@@ -2,14 +2,21 @@
 
 @section('content')
 <div class="video-container" id="videoContainer">
-    <iframe src="https://www.youtube.com/embed/pZJVMXqq4Ek?si=tLuA1v-YZPe9E7I2&amp;controls=0&enablejsapi=1"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="youtube-player"
-        style="display:none;"></iframe>
-    <div class="overlay hidden" id="overlay"></div>
     @if ($user->verified)
-    <button class="btn btn-primary " id="start-video"><i class="fas fa-video mx-2"></i>View Livestream</button>
+        @if(!$livestream)
+            <div class="alert alert-warning text-center shadow p-5" role="alert">
+                <h4 class="alert-heading">No Livestream Available</h4>
+                <p>There is no livestream available at the moment. Please check back later.</p>
+            </div>
+        @else
+            <iframe src="{{ $livestream->link }}&amp;controls=0&enablejsapi=1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="youtube-player"
+                style="display:none;"></iframe>        
+            <div class="overlay hidden" id="overlay"></div>
+            <button class="btn btn-primary " id="start-video"><i class="fas fa-video mx-2"></i>View Livestream</button>
+        @endif
     @else
     <div class="alert alert-warning text-center shadow p-5" role="alert">
         <h4 class="alert-heading">Account Not Verified</h4>

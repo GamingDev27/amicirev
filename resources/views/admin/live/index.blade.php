@@ -123,24 +123,8 @@
             @endforeach
 
         </div>
+        {{ $livestream->links() }}
     </div>
-
-    @foreach($livestream as $live)
-    {{-- <div class="card">
-        <iframe class="card-img-top" src="{{ $live->link }}"></iframe>
-        <div class="card-body">
-            <h5 class="card-title">{{ $live->name }}</h5>
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">{{ $live->description}}</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div> --}}
-    @endforeach
-
-    {{-- @foreach($livestreamlinks as $livelink)
-
-    @endforeach
-    {{ $livestreamlinks->links() }} --}}
 </div>
 @endsection
 
