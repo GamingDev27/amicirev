@@ -88,6 +88,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 	Route::post('/live/remove', [App\Http\Controllers\Admin\LiveSetupController::class, 'delete'])->name('admin_live_delete');
 	Route::get('/live/edit/{liveid}', [App\Http\Controllers\Admin\LiveSetupController::class, 'edit'])->name('admin_live_edit');
 	Route::post('/live/update', [App\Http\Controllers\Admin\LiveSetupController::class, 'update'])->name('admin_live_update');
+	Route::get('/live/search', [App\Http\Controllers\Admin\LiveSetupController::class, 'search'])->name('admin_live_search');
 });
 Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->group(function () {
 	Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index'])->name('student_profile');

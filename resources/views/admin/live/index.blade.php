@@ -8,61 +8,65 @@
             <h4 class="border-bottom pb-3 mb-4">Live Stream Setup</h4>
         </div>
         <!-- Card Header -->
+
         <div class="accordion px-2 col-12" id="filterMain">
-            <div class="card">
-                {{-- Header --}}
-                <div class="card-header p" id="filterHeader">
-                    <h2 class="m-0">
-                        <span class="btn btn-link btn-block text-left font-weight-bold text-dark">
-                            Filters
-                        </span>
-                    </h2>
-                </div>
-                {{-- BODY --}}
-                <div class="card-body ">
-                    <div class="d-flex flex-column flex-lg-column-reverse">
-                        <div class="form-row">
-                            <div class="input-group col-12 col-md-6 col-lg-4 mb-1">
-                                <input type="text" class="form-control" name="stream_name" id="stream_name"
-                                    placeholder="Stream Name" value="{{request('stream_name') }}">
+            <form action="{{ route('admin_live_search')}}" method="GET" role="search">
+                <div class="card">
+                    {{-- Header --}}
+                    <div class="card-header p" id="filterHeader">
+                        <h2 class="m-0">
+                            <span class="btn btn-link btn-block text-left font-weight-bold text-dark">
+                                Filters
+                            </span>
+                        </h2>
+                    </div>
+                    {{-- BODY --}}
+                    <div class="card-body ">
+                        <div class="d-flex flex-column flex-lg-column-reverse">
+                            <div class="form-row">
+                                <div class="input-group col-12 col-md-6 col-lg-4 mb-1">
+                                    <input type="text" class="form-control" name="stream_name" id="stream_name"
+                                        placeholder="Stream Name" value="{{request('stream_name') }}">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 mb-1">
+                                    <select type="text" class="form-control form-select-clear col-6 col-md-12"
+                                        name="is_active">
+                                        <option value="all">Status</option>
+                                        <option value="1" {{ request('is_active')=='1' ? 'selected' : '' }}>Active
+                                        </option>
+                                        <option value="0" {{ request('is_active')=='0' ? 'selected' : '' }}>Inactive
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 mb-1">
+                                    <select type="text" class="form-control form-select-clear col-6 col-md-12"
+                                        name="branch">
+                                        <option value=""><em>All Branches</em></option>
+                                        @foreach($seasons as $branch)
+                                        <option value="{{ $branch->id }}" {{ request('branch')==$branch->id ? 'selected'
+                                            :
+                                            '' }}>{{ $branch->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-12 col-md-6 col-lg-4 mb-1">
-                                <select type="text" class="form-control form-select-clear col-6 col-md-12"
-                                    name="is_active">
-                                    <option value="">Status</option>
-                                    <option value="1" {{ request('is_active')=='1' ? 'selected' : '' }}>Active
-                                    </option>
-                                    <option value="2" {{ request('is_active')=='0' ? 'selected' : '' }}>Inactive
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-4 mb-1">
-                                <select type="text" class="form-control form-select-clear col-6 col-md-12"
-                                    name="branch">
-                                    <option value=""><em>All Branches</em></option>
-                                    @foreach($seasons as $branch)
-                                    <option value="{{ $branch->id }}" {{ request('branch')==$branch->id ? 'selected' :
-                                        '' }}>{{ $branch->name }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row justify-content-end mb-lg-2">
-                            <div class="col-12 col-lg-2 col-xl-1 mb-1">
-                                <button type="submit" class="btn btn-primary btn-block" id="filterBtn"><i
-                                        class="fas fa-filter"></i>
-                                    Filter</button>
-                            </div>
-                            <div class="col-12 col-lg-2 col-xl-1 mb-1">
-                                <button type="button" class="btn btn-outline-secondary btn-block" id="clearFilter"><i
-                                        class="far fa-times-circle"></i>
-                                    Clear</button>
+                            <div class="form-row justify-content-end mb-lg-2">
+                                <div class="col-12 col-lg-2 col-xl-1 mb-1">
+                                    <button type="submit" class="btn btn-primary btn-block" id="filterBtn"><i
+                                            class="fas fa-filter"></i>
+                                        Filter</button>
+                                </div>
+                                <div class="col-12 col-lg-2 col-xl-1 mb-1">
+                                    <button type="button" class="btn btn-outline-secondary btn-block"
+                                        id="clearFilter"><i class="far fa-times-circle"></i>
+                                        Clear</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>
@@ -91,7 +95,8 @@
                                 <div class="d-flex justify-content-between flex-column flex-md-row">
                                     <div class="d-flex flex-column flex-md-row">
                                         <h5 class="card-title mr-3">{{ $live->name }}</h5>
-                                        <h5 class="card-text"><span class="badge badge-primary">{{ $live->season_id == 0? 'All Branches' : $live->season->name
+                                        <h5 class="card-text"><span class="badge badge-primary">{{ $live->season_id ==
+                                                0? 'All Branches' : $live->season->name
                                                 }}</span></h5>
                                     </div>
                                     <div class="d-flex mt-2 mt-md-0 md:flex-grow-1">
@@ -142,20 +147,11 @@
 @once
 @push('scripts')
 <script>
-    $("#check-all-students").on( "click", function(e) {
-		current = $(this).prop("checked");
-		jQuery(".enrollees input[type=checkbox]").each(function() {
-			$(this).prop("checked", current);
-		});
-	});
-
-	$("#clearFilter").on("click", function(){
-		$("#first_name").val('');
-		$("#last_name").val('');
+    $("#clearFilter").on("click", function(){
+		$("#stream_name").val('');
 		$(".form-select-clear option:selected").removeAttr('selected');
 		$("#filterBtn").click();
 	});
-
    
 </script>
 @endpush
