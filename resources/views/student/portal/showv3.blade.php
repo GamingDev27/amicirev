@@ -65,7 +65,7 @@
 									@foreach($classes[$course->id] as $class)
 										@if($class->coach)
 											<div class="card coaches-dv shadow m-2 bg-white rounded" style="display:none;" id="coach-{{$class->id}}-{{$class->coach->id}}-dv">
-												<img class="card-img-top" src="/images/{{ $class->coach->image}}" alt="Coach Image">
+												<img class="card-img-top" src="/images/{{ $class->coach->image}}" alt="Coach Image" loading="lazy">
 												<div class="card-body p-1">
 													<div class="card-title" align="center" >
 														<h5 style="color:#FF5722;font-size:24; margin:0px;" >

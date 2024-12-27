@@ -25,7 +25,7 @@
     <link href="{{ asset('css/b4vtabs.min.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/vendor/ckeditor5-build-classic/ckeditor.js') }}"></script>
+
     <script src="{{ asset('js/vendor/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
