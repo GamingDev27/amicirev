@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use App\Services\BunnyService;
+use Intervention\Image\Facades\Image;
 
 use App\Models\Season;
 use App\Models\Batch;
@@ -22,301 +23,325 @@ use App\Models\Enrollment;
 use App\Models\Student;
 use App\Models\Token;
 use Vimeo\Laravel\VimeoManager;
+
 class PortalController extends Controller
 {
 	protected $bunny;
-	public function __construct(VimeoManager $vimeo,BunnyService $bunny)
-    {
-        $this->vimeo = $vimeo;
-        $this->bunny = $bunny;
-    }
-    public function show($batchid,$courseid = null,$subjectid = null){
-        $batch = Batch::where('id',$batchid)->with('season')->first();
-        if($batch){
-			
-		}else{
-			return back()->with('error','Invalid Batch ID! ' );
+	public function __construct(VimeoManager $vimeo, BunnyService $bunny)
+	{
+		$this->vimeo = $vimeo;
+		$this->bunny = $bunny;
+	}
+	public function show($batchid, $courseid = null, $subjectid = null)
+	{
+		$batch = Batch::where('id', $batchid)->with('season')->first();
+		if ($batch) {
+		} else {
+			return back()->with('error', 'Invalid Batch ID! ');
 		}
-		
-		$batchcourseids = Clas::where('batch_id',$batchid)->orderBy('id')->groupBy('course_id')->pluck('course_id')->toArray();
-		
+
+		$batchcourseids = Clas::where('batch_id', $batchid)->orderBy('id')->groupBy('course_id')->pluck('course_id')->toArray();
+
 		$userid = Auth::user()->id;
-		$student = Student::where('auth_user_id',$userid)->first();
-		$enrollment = Enrollment::where('student_id',$student->id)->where('batch_id',$batchid)->first();
+		$student = Student::where('auth_user_id', $userid)->first();
+		$enrollment = Enrollment::where('student_id', $student->id)->where('batch_id', $batchid)->first();
 
-		if($batchcourseids){
+		if ($batchcourseids) {
 
-			if($courseid == null)
-				$courseid = $batchcourseids[array_key_first ($batchcourseids)];
-			
-			$subjects = Subject::where('course_id',$courseid)->get();
-			
-			if($subjectid == null)
-				$subjectid = $subjects[array_key_first ($subjects->toArray())]->id;
-		
-			
-			$rawclasses = Clas::where('batch_id',$batchid)
+			if ($courseid == null)
+				$courseid = $batchcourseids[array_key_first($batchcourseids)];
+
+			$subjects = Subject::where('course_id', $courseid)->get();
+
+			if ($subjectid == null)
+				$subjectid = $subjects[array_key_first($subjects->toArray())]->id;
+
+
+			$rawclasses = Clas::where('batch_id', $batchid)
 				->with('coach')
 				->with('attachments')
 				->get();
 			$classes = [];
-			
+
 			$attachmentids = [];
-			foreach($rawclasses as $class){
-				if($enrollment && $enrollment->verified == 1 && $class->attachments){
-					foreach($class->attachments as $attachment){
+			foreach ($rawclasses as $class) {
+				if ($enrollment && $enrollment->verified == 1 && $class->attachments) {
+					foreach ($class->attachments as $attachment) {
 						$attachmentids[] = $attachment->id;
 					}
 				}
 			}
-			$rawtokens = Token::whereIn('foreign_id',$attachmentids)
-				->where('user_id',Auth::user()->id)
-				->where('status',1)
+			$rawtokens = Token::whereIn('foreign_id', $attachmentids)
+				->where('user_id', Auth::user()->id)
+				->where('status', 1)
 				->get();
 
 			$tokens = [];
-			foreach($rawtokens as $token){
-				$tokens[$token->foreign_id][]=$token->token;
+			foreach ($rawtokens as $token) {
+				$tokens[$token->foreign_id][] = $token->token;
 			}
 			Log::info($tokens);
-			foreach($rawclasses as $class){
-				if($enrollment && $enrollment->verified == 1 && $class->attachments){
-					foreach($class->attachments as $attachment){
+			foreach ($rawclasses as $class) {
+				if ($enrollment && $enrollment->verified == 1 && $class->attachments) {
+					foreach ($class->attachments as $attachment) {
 						$i = 0;
-						if(isset($tokens[$attachment->id])){
+						if (isset($tokens[$attachment->id])) {
 							$i += count($tokens[$attachment->id]);
-						}else{
+						} else {
 							$tokens[$attachment->id] = [];
 						}
-						Log::info($attachment->id.':'.$i);
-						for(;$i<10;$i++){
-							$code = 'CA_'.time().Str::random(20);
+						Log::info($attachment->id . ':' . $i);
+						for (; $i < 10; $i++) {
+							$code = 'CA_' . time() . Str::random(20);
 							$token = new Token;
 							$token->token = $code;
 							$token->status = 1;
 							$token->foreign_id = $attachment->id;
 							$token->user_id = Auth::user()->id;
 
-							if($token->save()){
+							if ($token->save()) {
 								$tokens[$attachment->id][] = $token->token;
 							}
 						}
-
-						
 					}
 				}
 
-                $classes[$class->course_id][$class->subject_id] = $class;
-            }
-			$courses = Course::whereIn('id',$batchcourseids)->where('enabled',true)->get();
-		
-			$coaches = Coach::where('enabled',1)->get();
-		}	
+				$classes[$class->course_id][$class->subject_id] = $class;
+			}
+			$courses = Course::whereIn('id', $batchcourseids)->where('enabled', true)->get();
 
-		if($tokens){
+			$coaches = Coach::where('enabled', 1)->get();
+		}
+
+		if ($tokens) {
 			$tokens = base64_encode(json_encode($tokens));
 		}
 
-		return view('student.portal.show',compact('batch','tokens','student','enrollment','courses','coaches','classes','subjects','batchid','courseid','subjectid'));
-    }
+		return view('student.portal.show', compact('batch', 'tokens', 'student', 'enrollment', 'courses', 'coaches', 'classes', 'subjects', 'batchid', 'courseid', 'subjectid'));
+	}
 
-    public function join(Request $request){
+	public function join(Request $request)
+	{
 		$result = false;
 		$errormessage = "";
 		$validator = Validator::make($request->all(), [
-            'student_id' => 'required',
-            'batch_id' => 'required',
-        ]);
-        if ($validator->fails()) {
+			'student_id' => 'required',
+			'batch_id' => 'required',
+		]);
+		if ($validator->fails()) {
 			return back()
 				->withErrors($validator)
-                ->withInput();
+				->withInput();
 		} else {
-			
+
 			try {
-                	
+
 				$result = true;
 
 				$enrollment = new Enrollment;
-				
+
 				$enrollment->batch_id = $request->batch_id;
 				$enrollment->student_id = $request->student_id;
 				$enrollment->status = 1;
 				$enrollment->payment_status = Enrollment::PAYMENT_NEW;
 
-				if($enrollment->save()){
+				if ($enrollment->save()) {
 
 					$result = true;
-				}else{
+				} else {
 					$result = false;
 				}
-			}catch(\Exception $e){
+			} catch (\Exception $e) {
 				$result = false;
 				$errormessage = $e->getMessage();
 			}
 		}
-		if($result)
-			return back()->with('success','Join request have been saved successfully!');
+		if ($result)
+			return back()->with('success', 'Join request have been saved successfully!');
 		else
-			return back()->with('error','Join request was not saved! '.$errormessage );
-		
+			return back()->with('error', 'Join request was not saved! ' . $errormessage);
 	}
 
-	public function showv2($batchid,$courseid = null,$subjectid = null){
-		
-        $batch = Batch::where('id',$batchid)->with('season')->first();
-		
-        if($batch){
-		
-		}else{
-			return back()->with('error','Invalid Batch ID! ' );
+	public function showv2($batchid, $courseid = null, $subjectid = null)
+	{
+
+		$batch = Batch::where('id', $batchid)->with('season')->first();
+
+		if ($batch) {
+		} else {
+			return back()->with('error', 'Invalid Batch ID! ');
 		}
-		
-		$batchcourseids = Clas::where('batch_id',$batchid)->orderBy('id')->groupBy('course_id')->pluck('course_id')->toArray();
-		
+
+		$batchcourseids = Clas::where('batch_id', $batchid)->orderBy('id')->groupBy('course_id')->pluck('course_id')->toArray();
+
 		$userid = Auth::user()->id;
-		$student = Student::where('auth_user_id',$userid)->first();
-		$enrollment = Enrollment::where('student_id',$student->id)->where('batch_id',$batchid)->first();
+		$student = Student::where('auth_user_id', $userid)->first();
+		$enrollment = Enrollment::where('student_id', $student->id)->where('batch_id', $batchid)->first();
 
-		if($batchcourseids){
+		if ($batchcourseids) {
 
-			if($courseid == null)
-				$courseid = $batchcourseids[array_key_first ($batchcourseids)];
-			
-			$subjects = Subject::where('course_id',$courseid)->get();
-			
-			if($subjectid == null)
-				$subjectid = $subjects[array_key_first ($subjects->toArray())]->id;
-		
-			
-			$rawclasses = Clas::where('batch_id',$batchid)
+			if ($courseid == null)
+				$courseid = $batchcourseids[array_key_first($batchcourseids)];
+
+			$subjects = Subject::where('course_id', $courseid)->get();
+
+			if ($subjectid == null)
+				$subjectid = $subjects[array_key_first($subjects->toArray())]->id;
+
+
+			$rawclasses = Clas::where('batch_id', $batchid)
 				->with('coach')
 				->with('attachments')
 				->get();
 			$classes = [];
-			
+
 			$attachmentids = [];
 			$albumids = [];
 			$albums = [];
-			foreach($rawclasses as $class){
-				if($enrollment && $enrollment->verified == 1){
-					if($class->attachments)
-						foreach($class->attachments as $attachment){
+			foreach ($rawclasses as $class) {
+				if ($enrollment && $enrollment->verified == 1) {
+					if ($class->attachments)
+						foreach ($class->attachments as $attachment) {
 							$token = new Token;
-							$code = 'CA_'.time().Str::random(20);
+							$code = 'CA_' . time() . Str::random(20);
 							$token->token = $code;
 							$token->status = 1;
 							$token->foreign_id = $attachment->id;
 							$token->user_id = Auth::user()->id;
 
-							if($token->save()){
+							if ($token->save()) {
 								$attachment->token = $token->token;
 							}
 							$attachmentids[] = $attachment->id;
 						}
-					
-					if(strlen($class->vimeo_albumid)){
-						$albums[$class->id] = $this->vimeo->request($class->vimeo_albumid."/videos", ['per_page' => 10], 'GET');
+
+					if (strlen($class->vimeo_albumid)) {
+						$albums[$class->id] = $this->vimeo->request($class->vimeo_albumid . "/videos", ['per_page' => 10], 'GET');
 					}
 				}
 			}
-			
+
 			//Log::info(json_encode($albums,JSON_UNESCAPED_SLASHES));
 
-			
-			foreach($rawclasses as $class){
+
+			foreach ($rawclasses as $class) {
 				$classes[$class->course_id][$class->subject_id] = $class;
-            }
-			$courses = Course::whereIn('id',$batchcourseids)->where('enabled',true)->get();
-		
-			$coaches = Coach::where('enabled',1)->get();
-		}	
+			}
+			$courses = Course::whereIn('id', $batchcourseids)->where('enabled', true)->get();
 
-		return view('student.portal.showv2',compact('batch','student','enrollment','courses','coaches','classes','subjects','batchid','courseid','subjectid','albums'));
-    }
-    
-	
-	public function showv3($batchid,$courseid = null,$subjectid = null){
-		
-        $batch = Batch::where('id',$batchid)->with('season')->first();
-		if($batch){
-		
-		}else{
-			return back()->with('error','Invalid Batch ID! ' );
+			$coaches = Coach::where('enabled', 1)->get();
 		}
-		
-		$batchcourseids = Clas::where('batch_id',$batchid)->orderBy('id')->groupBy('course_id')->pluck('course_id')->toArray();
-		
+
+		return view('student.portal.showv2', compact('batch', 'student', 'enrollment', 'courses', 'coaches', 'classes', 'subjects', 'batchid', 'courseid', 'subjectid', 'albums'));
+	}
+
+
+	public function showv3($batchid, $courseid = null, $subjectid = null)
+	{
+
+		$batch = Batch::where('id', $batchid)->with('season')->first();
+		if ($batch) {
+		} else {
+			return back()->with('error', 'Invalid Batch ID! ');
+		}
+
+		$batchcourseids = Clas::where('batch_id', $batchid)->orderBy('id')->groupBy('course_id')->pluck('course_id')->toArray();
+
 		$userid = Auth::user()->id;
-		$student = Student::where('auth_user_id',$userid)->first();
-		$enrollment = Enrollment::where('student_id',$student->id)->where('batch_id',$batchid)->first();
+		$student = Student::where('auth_user_id', $userid)->first();
+		$enrollment = Enrollment::where('student_id', $student->id)->where('batch_id', $batchid)->first();
 
-		if($batchcourseids){
+		if ($batchcourseids) {
 
-			if($courseid == null)
-				$courseid = $batchcourseids[array_key_first ($batchcourseids)];
-			
-			$subjects = Subject::where('course_id',$courseid)->get();
-			
-			if($subjectid == null)
-				$subjectid = $subjects[array_key_first ($subjects->toArray())]->id;
-			
-			$rawclasses = Clas::where('batch_id',$batchid)
+			if ($courseid == null)
+				$courseid = $batchcourseids[array_key_first($batchcourseids)];
+
+			$subjects = Subject::where('course_id', $courseid)->get();
+
+			if ($subjectid == null)
+				$subjectid = $subjects[array_key_first($subjects->toArray())]->id;
+
+			$rawclasses = Clas::where('batch_id', $batchid)
 				->with('coach')
 				->with('attachments')
 				->get();
-			
+
 			$classes = [];
 			$attachmentids = [];
 			$albumids = [];
 			$albums = [];
-			
-			foreach($rawclasses as $class){
-				if($enrollment && $enrollment->verified == 1){
-					if($class->attachments)
-						foreach($class->attachments as $attachment){
+
+			foreach ($rawclasses as $class) {
+				if ($enrollment && $enrollment->verified == 1) {
+					if ($class->attachments)
+						foreach ($class->attachments as $attachment) {
 							$token = new Token;
-							$code = 'CA_'.time().Str::random(20);
+							$code = 'CA_' . time() . Str::random(20);
 							$token->token = $code;
 							$token->status = 1;
 							$token->foreign_id = $attachment->id;
 							$token->user_id = Auth::user()->id;
 
-							if($token->save()){
+							if ($token->save()) {
 								$attachment->token = $token->token;
 							}
 							$attachmentids[] = $attachment->id;
 						}
-					
-					if(strlen($class->vimeo_albumid)){
+
+					if (strlen($class->vimeo_albumid)) {
 						//$albums[$class->id] = $this->vimeo->request($class->vimeo_albumid."/videos", ['per_page' => 10], 'GET');
-						
-						if (Cache::has('vimeo_albums_'.$class->vimeo_albumid)){
-							$album = Cache::get('vimeo_albums_'.$class->vimeo_albumid);
-						}else{
+
+						if (Cache::has('vimeo_albums_' . $class->vimeo_albumid)) {
+							$album = Cache::get('vimeo_albums_' . $class->vimeo_albumid);
+						} else {
 							//$album = $this->vimeo->request($class->vimeo_albumid."/videos", ['per_page' => 10], 'GET');
 							$album = $this->bunny->getVideos($class->vimeo_albumid);
-							Cache::forever('vimeo_albums_'.$class->vimeo_albumid,$album);
+							Cache::forever('vimeo_albums_' . $class->vimeo_albumid, $album);
 						}
-						
+
 						$albums[$class->id] = $album;
 					}
 				}
 			}
-			
+
 			//Log::info(json_encode($albums,JSON_UNESCAPED_SLASHES));
-			
-			
-			foreach($rawclasses as $class){
-				$classes[$class->course_id][$class->subject_id] = $class;
-            }
-			$courses = Course::whereIn('id',$batchcourseids)->where('enabled',true)->get();
-		
-			$coaches = Coach::where('enabled',1)->get();
-		}	
+
+
+			foreach ($rawclasses as $class) {
+				if(@$class->coach->image){
+					$class->coach->image =$this->getCachedImage($class->coach->image);
+				}
+				$classes[$class->course_id][$class->subject_id] = $class;			
+				
+			}
+			$courses = Course::whereIn('id', $batchcourseids)->where('enabled', true)->get();
+
+			$coaches = Coach::where('enabled', 1)->get();
+		}
 		$pullzone = env('BUNNY_PULL_ZONE');
 		$libid = env('BUNNY_VIDEO_LIBRARY_ID');
-		return view('student.portal.showv3',compact('batch','student','enrollment','courses','coaches','classes','subjects','batchid','courseid','subjectid','albums','pullzone','libid'));
-    }
-    
+		return view('student.portal.showv3', compact('batch', 'student', 'enrollment', 'courses', 'coaches', 'classes', 'subjects', 'batchid', 'courseid', 'subjectid', 'albums', 'pullzone', 'libid'));
+	}
+
+
+	# function to cache images, convert to webp and save to cached-image folder
+	private function getCachedImage($filename)
+	{
+
+		$sourcePath = public_path('images/' . $filename);
+		$destinationDir = public_path('cached-image');
+		$webpFilename = pathinfo($filename, PATHINFO_FILENAME) . '.webp';
+
+		# if file exists, skip the processing and return the image
+		if (file_exists($destinationDir . '/' . $webpFilename)) {
+			return $webpFilename;
+		}
+
+		# actual image conversion
+		$image = Image::make($sourcePath)
+			->encode('webp', 75)
+			->save($destinationDir . '/' . $webpFilename);
+
+		return $webpFilename;
+	}
 }
