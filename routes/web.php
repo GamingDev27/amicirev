@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Spatie\Honeypot\ProtectAgainstSpam;
+
 //use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,13 @@ use Illuminate\Http\Request;
 Route::get('/watch', [App\Http\Controllers\HomeController::class, 'watch']);
 Route::any('/stream/{code}', [App\Http\Controllers\HomeController::class, 'stream']);
 
-Auth::routes(['verify' => true]);
+Route::middleware(ProtectAgainstSpam::class)->group(function () {
+	Auth::routes(['verify' => true]);
+});
+
+Route::get('/spam', function () {
+	return view('auth.spam');
+})->name('spam.page');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/test', [App\Http\Controllers\TestController::class, 'test'])->name('test');
