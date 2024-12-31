@@ -8,6 +8,11 @@
                 <h4 class="alert-heading">No Livestream Available</h4>
                 <p>There is no livestream available at the moment. Please check back later.</p>
             </div>
+        @elseif(!$is_enrolled)
+            <div class="alert alert-warning text-center shadow p-5" role="alert">
+                <h4 class="alert-heading">This Livestream not available</h4>
+                <p>You are currently not enrolled under this this branch. Please enroll in <strong>{{ $livestream->season->name }}</strong> first.</p>
+            </div>
         @else
             <iframe src="{{ $livestream->link }}&amp;controls=0&enablejsapi=1"
                 title="YouTube video player" frameborder="0"

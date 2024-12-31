@@ -112,11 +112,9 @@ Route::prefix('student')->middleware(['auth', 'role:student', 'verified'])->grou
 	Route::post('/portal/join', [App\Http\Controllers\Student\PortalController::class, 'join'])->name('student_portal_join');
 	Route::any('/attachment/stream/{code}', [App\Http\Controllers\Admin\AttachmentController::class, 'stream'])->name('student_stream_mov');
 
-	Route::get('/live', function () {
-		$user = Auth::user();
-		$livestream = LiveStreamLink::where('is_active', 1)->orderBy('date_stream', 'desc')->first();
-		return view('student.portal.livefeed', ['user' => $user, 'livestream' => $livestream]);
-	})->name('live');
+	Route::any('/livefeed', [App\Http\Controllers\Student\LiveStreamController::class, 'index'])->name('student.live.index');
+	Route::get('/livefeed/search', [App\Http\Controllers\Student\LiveStreamController::class, 'search'])->name('student.live.search');
+	Route::get('/live/{liveStream?}', [App\Http\Controllers\Student\LiveStreamController::class, 'show'])->name('live');
 });
 
 Route::get('/logout', function () {

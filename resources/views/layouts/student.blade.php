@@ -100,7 +100,7 @@
                         @endif
 
                         @if(Auth::user()->verified)
-                        <a class="nav-link" href="{{ route('live') }}">
+                        <a class="nav-link" href="{{ route('student.live.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-video"></i></i></div>
                             LIVE
                         </a>
